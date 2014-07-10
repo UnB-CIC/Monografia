@@ -21,7 +21,7 @@
 \usepackage{indentfirst}
 \usepackage{natbib}
 \usepackage{xcolor,graphicx,url}
-\usepackage[utf8x]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{footnote}
 %\usepackage{minipage}
@@ -47,7 +47,6 @@
 
 % garantir a exibição correta do símbolo na documentação original
 \DeclareTextCommandDefault\textpi{\ensuremath{\pi}}%
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -81,24 +80,25 @@
   \maketitle
 
   \begin{dedicatoria}
-Citando o poeta: ``Eu dedico essa música a primeira garota que tá sentada ali na fila. Brigado!''
+  \input{tex/dedicatoria}%
   \end{dedicatoria}
 
   \begin{agradecimentos}
-Agradeço ao Prof. José Ralha, cujos esforços na versão anterior foram bem ``adaptados'' a este trabalho.
+  \input{tex/agradecimentos}%
   \end{agradecimentos}
 
 \hyphenation{au-xi-li-ar}
 
   \begin{resumo}
-  Um parágrafo resumindo todo o trabalho. Classe \LaTeX\ para gerar documentos do Departamento de Ciência da Computação da Universidade de Brasília.
+  \input{tex/resumo}%
   \end{resumo}
 
   \selectlanguage{american}
   \begin{abstract}
-  Um parágrafo \emph{na língua Inglesa} resumindo todo o trabalho. A \LaTeX\ class for generating documents for the Departament of Computer Science of the University of Brasília.
+  \input{tex/abstract}%
   \end{abstract}
   \selectlanguage{brazil}
+  
 \hyphenation{a-tri-bu-tos}
   \tableofcontents
   \listoffigures
