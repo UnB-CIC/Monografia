@@ -1,0 +1,120 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Classe do documento
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Nós usamos a classe "unb-cic".  Deixe apenas uma das linhas
+% abaixo não-comentada, dependendo se você for do bacharelado ou
+% da licenciatura.
+
+% Para tirar os comentários, é só mudar o comando para fazer nada.
+\newcommand{\com}[1]{\textcolor{red}{#1}}%
+
+\documentclass[bacharelado]{unb-cic}%
+%\documentclass[mestrado,ppca]{unb-cic}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Pacotes importados
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[brazil,american]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{indentfirst}
+\usepackage{natbib}
+\usepackage{xcolor,graphicx,url}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{footnote}
+%\usepackage{minipage}
+\usepackage{tablefootnote} 
+\usepackage{listings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Cores dos links
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Veja o arquivos cores.tex se quiser ver que outras cores estão
+% pré-definidas.  Utilizando o comando \hypersetup abaixo nós
+% evitamos aquelas caixas vermelhas feias em volta dos links.
+
+\input{cores}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=DarkScarletRed,
+  citecolor=DarkScarletRed,
+  filecolor=DarkScarletRed,
+  urlcolor= DarkScarletRed
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Informações sobre a monografia
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{UnB-CIC: Uma classe em LaTeX para textos do Departamento de Ciência da Computação}%
+
+\orientador{\prof \dr Guilherme Novaes Ramos}{CIC/UnB}
+%\coorientador[a]{\prof[a] \dr[a] Coorientadora}{MAT/UnB}
+\coordenador[a]{\prof[a] \dr[a] Coorde Nadora}{CIC/UnB}
+\diamesano{24}{dezembro}{2014}%
+
+\membrobanca{\prof[a] \dr[a] Membra da Banca}{MEC}
+\membrobanca{\prof \dr Membro do Banco}{CIC/UnB}
+
+\autor{Guilherme N.}{Ramos}
+\CDU{004.4}
+
+\palavraschave{LaTeX, metodologia científica}
+\keywords{LaTeX, scientific method}
+
+
+
+\graphicspath{{.}{img/}}%
+\newcommand{\unbcic}{\texttt{UnB-CIC}}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Texto
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+  \maketitle
+
+  \begin{dedicatoria}
+Citando o poeta: ``Eu dedico essa música a primeira garota que tá sentada ali na fila. Brigado!''
+  \end{dedicatoria}
+
+  \begin{agradecimentos}
+Agradeço ao Prof. José Ralha, cujos esforços na versão anterior foram bem ``adaptados'' a este trabalho.
+  \end{agradecimentos}
+
+\hyphenation{au-xi-li-ar}
+
+  \begin{resumo}
+  Um parágrafo resumindo todo o trabalho. Classe \LaTeX\ para gerar documentos do Departamento de Ciência da Computação da Universidade de Brasília.
+  \end{resumo}
+
+  \selectlanguage{american}
+  \begin{abstract}
+  Um parágrafo \emph{na língua Inglesa} resumindo todo o trabalho. A \LaTeX\ class for generating documents for the Departament of Computer Science of the University of Brasília.
+  \end{abstract}
+  \selectlanguage{brazil}
+\hyphenation{a-tri-bu-tos}
+  \tableofcontents
+  \listoffigures
+  \listoftables
+
+\renewcommand{\appendixname}{Anexo}
+
+
+  \textual
+  
+  \input{tex/Capitulo1}
+  % inserir demais capítulos
+  
+
+  \postextual
+  \bibliographystyle{plain}
+  \bibliography{bibliografia}
+
+\appendix
+  \input{tex/Anexo1}
+
+\end{document}

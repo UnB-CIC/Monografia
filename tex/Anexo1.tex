@@ -1,0 +1,356 @@
+\chapter{Documentação Original}%
+\small\begin{verbatim}
+% -*- mode: LaTeX; coding: utf-8; -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% File    : unb-cic.cls (LaTeX2e class file)
+%% Authors : Flávio Maico Vaz da Costa
+%%              (based on previous versions by José Carlos L. Ralha)
+%% Version : 0.93
+%% Updates : 0.5  [??/11/2004] - Initial release. don't remember the day.
+%%         : 0.75 [04/04/2005] - Fixed font problems, UnB logo
+%%                               resolution, keywords and palavras-chave
+%%                               hyphenation and generation problems,
+%%                               and a few other problems.
+%%         : 0.8  [08/01/2006] - Corrigido o problema causado por
+%%                               bancas com quatro membros. O quarto
+%%                               membro agora é OPCIONAL.
+%%                               Foi criado um novo comando chamado
+%%                               bibliografia. Esse comando tem dois
+%%                               argumentos onde o primeiro especifica
+%%                               o nome do arquivo de referencias
+%%                               bibliograficas e o segundo argumento
+%%                               especifica o formato. Como efeito
+%%                               colateral, as referências aparecem no
+%%                               sumário.
+%%         : 0.9 [02/03/2008]  - Reformulação total, com nova estrutura
+%%                               de opções, comandos e ambientes, adequação
+%%                               do logo da UnB às normas da universidade,
+%%                               inúmeras melhorias tipográficas,
+%%                               aprimoramento da integração com hyperref,
+%%                               melhor tratamento de erros nos comandos,
+%%                               documentação e limpeza do código da classe.
+%%         : 0.91 [10/05/2008] - Suporte ao XeLaTeX, aprimorado suporte para
+%%                               glossaries.sty, novos comandos \capa, \CDU
+%%                               e \subtitle, ajustes de margem para opções
+%%                               hyperref/impressao.
+%%         : 0.92 [26/05/2008] - Melhora do ambiente {definition}, suporte
+%%                               a hypcap, novos comandos \fontelogo e
+%%                               \slashedzero, suporte [10pt, 11pt, 12pt].
+%%                               Corrigido bug de seções de apêndice quando
+%%                               usando \hypersetup{bookmarksnumbered=true}.
+%%         : 0.93 [09/06/2008] - Correção na contagem de páginas, valores
+%%                               load e config para opção hyperref, comandos
+%%                               \ifhyperref e \SetTableFigures, melhor
+%%                               formatação do quadrado CIP. 
+%%
+%% Definição de classe para dissertações do departamento de
+%% Ciência da Computação (CIC) da Universidade de Brasília.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PRÉ-REQUISITOS (usando LaTeX ou XeLaTeX):
+%%
+%% * Uma distribuição LaTeX2e compatível
+%%   - em Windows, recomenda-se MiKTeX: http://miktex.org/
+%% * Logomarca da UnB (arquivos positivo_cor.eps e contorno_preto.eps)
+%%   - disponível na página: http://www.unb.br/unb/marca/index.php
+%% * Pacotes obrigatórios
+%%   - xkeyval, graphicx, boites, setspace,
+%%     geometry, atbegshi, hyperref
+%%
+%% PRÉ-REQUISITOS (usando XeLaTeX):
+%% * Fonte "Arial" instalada no sistema operacional
+%% * Pacotes obrigatórios
+%%   - fontspec, xltxtra (carregar no próprio documento)
+%%
+%% PRÉ-REQUISITOS (usando LaTeX):
+%% * Fonte ua1 (URW Arial A030, PostScript Type-1)
+%%   - disponível no CTAN: http://www.ctan.org/tex-archive/fonts/urw/arial/
+%%   - no MiKTeX, basta instalar pacote "arial" via MiKTeX Package Manager
+%% * Pacotes obrigatórios
+%%   - relsize, fixltx2e
+%% * Pacotes opcionais
+%%   - MinionPro (fonte proprietária)
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PRINCIPAIS OPÇÕES DISPONÍVEIS:
+%%
+%% licenciatura - O trabalho é do curso de Licenciatura (Graduação).
+%% bacharelado  - O trabalho é do curso de Bacharelado (Graduação).
+%% mestrado     - O trabalho é de Mestrado.
+%%
+%% draft - Gera o documento em modo de rascunho: não exibe as imagens e
+%%         modifica o espaçamento entre linhas.
+%% final - Gera o documento em modo final, não-rascunho (padrão).
+%%
+%% impressao       - Gera a versão para impressão, sem hipertexto.
+%% hyperref=load   - Carrega e configura o pacote hyperref para gerar
+%%                   a versão hipertexto para exibição em tela (padrão).
+%% hyperref=config - Configura o pacote hyperref para gerar
+%%                   a versão hipertexto para exibição em tela, mas o
+%%                   pacote deve ser carregado no próprio documento.
+%%                   Leia a seção PROBLEMAS CONHECIDOS para recomendação
+%%                   de uso desta opção.
+%%
+%% 10pt - Define tamanho da fonte do texto.
+%% 11pt - Define tamanho da fonte do texto (padrão no modo draft).
+%% 12pt - Define tamanho da fonte do texto (padrão no modo final).
+%%
+%% singlespacing  - Define espaçamento simples entre linhas (padrão no modo
+%%                  final).
+%% onehalfspacing - Define espaçamento de um e meio entre linhas (padrão no
+%%                  modo draft).
+%% doublespacing  - Define espaçamento duplo entre linhas.
+%% baselineskip   - Utiliza o comando \baselineskip para definir o espaçamento
+%%                  de linhas. Se não for infomada, o espaçamento é definido 
+%%                  pelo pacote "setspace" (recomendável, ou seja, só use esta
+%%                  opção se tiver algum motivo para não usar o setspace).
+%%                  Pode ser usada em conjunto com uma das três opções acima.
+%%
+%% prestyle=<val>  - Especifica o estilo das páginas iniciais (agradecimentos,
+%%                   resumo, sumário, etc.). Valores típicos são "plain"
+%%                   (padrão) ou "empty".
+%% textstyle=<val> - Especifica o estilo das páginas dos elementos textuais e
+%%                   pós-textuais. Valores típicos são "plain" (padrão) ou
+%%                   "fancy" (este último requer o pacote {fancyhdr}).
+%% chapstyle=<val> - Especifica o estilo da primeira página de cada capítulo.
+%%                   Valores típicos são "plain" (padrão) ou "empty".
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CRIAÇÃO DA MONOGRAFIA:
+%%
+%% A folha de rosto e folha de aprovação, por padronização estética,
+%% são sempre formatados como "onehalfspacing" independente das opções
+%% escolhidas. A seção de Referências é sempre "singlespacing". Citações
+%% {quote}, {quotation} e versos {verse} são automaticamente "singlespacing" e
+%% com letra menor.
+%%
+%% Os comandos \textlinf (lining figures) e \texttabf (tabular figures)
+%% permitem selecionar, respectivamente, números "maiúsculos" (sim, isso
+%% existe!) e números monoespaçados - o que só faz sentido para fontes 
+%% que conhenham números maiúsculos x minúsculos e monoespaçados x
+%% proporcionais (Minion Pro, Myriad Pro, Didot, Apple Chancery...).
+%% Essas opção foi implementada apenas para a fonte Adobe Minion Pro no LaTeX,
+%% mas funciona para qualquer fonte que suporte este recurso no XeLaTeX -
+%% veja a documentação do pacote {fontspec} para mais informações.
+%% Use \textlinf quando os números acompanharem texto em letras maiúsculas ou
+%% em versalete (small-caps). Use \texttabf em tabelas ou outros lugares onde
+%% for desejável que os números fiquem alinhados em colunas. Como alternativa
+%% aos comandos, pode-se usar os ambientes {linfig} e {tabfig}.
+%% O comando \SetTableFigures pode ser usado para redefinir um ambiente de
+%% modo que os números contidos nele sejam automaticamente formatados
+%% maiúsculos e monoespaçados, por exemplo: 
+%%
+%%   \SetTableFigures{tabular}
+%%   \SetTableFigures{tabularx}
+%%   \SetTableFigures{longtable}
+%%
+%% A capa, quando presente, não é contada na numeração das páginas.
+%% As páginas iniciais, a partir da folha de rosto, são consideradas na 
+%% contagem de páginas, mas não são numeradas.
+%% As páginas seguintes (lista de figuras, etc.) por padrão são numeradas com
+%% algarismos romanos e aparecem no sumário. Entretanto, se prestyle=empty,
+%% não recebem numeração nem aparecem no sumário. 
+%% As páginas do conteúdo (da introdução em diante) são numeradas com 
+%% algarismos arábicos (13, 14, 15...) e começam a partir de 1.
+%%
+%% O sumário, por razões óbvias, deve colocado antes de todas as páginas
+%% que são mencionadas nele.
+%%
+%% O trabalho é dividido em elementos pré-textuais, textuais e pós-textuais.
+%% Estes elementos (alguns são opcionais, converse com seu orientador)
+%% são dispostos preferencialmente na seguinte ordem:
+%%    ELEMENTO                COMANDOS MAIS IMPORTANTES
+%%       Capa                 \capa
+%%    Elementos pré-textuais  \pretextual
+%%       Folha de rosto       \folharosto
+%%       Ficha catalográfica  \cip (impressa no verso da folha de rosto)
+%%       Errata               %deve ser criada como documento avulso
+%%       Folha de aprovação   \folhaaprovacao
+%%       Dedicatória          \begin{dedicatoria}...\end{dedicatoria}
+%%       Agradecimentos       \begin{agradecimentos}...\end{agradecimentos}
+%%       Epígrafe             %aluno-poeta, esse recurso não está disponível
+%%       Resumo               \begin{resumo}...\end{resumo}
+%%       Abstract             \begin{abstract}...\end{abstract}
+%%       Lista de Figuras     \figuras
+%%       Lista de Tabelas     \tabelas
+%%       Lista de Siglas      \printglossary[type=acronym] %usando pacote {glossaries}
+%%       Sumário              \sumario
+%%    Elementos textuais      \textual
+%%       Introdução           \chapter{Introdu\c{c}\~ao} ...
+%%       Desenvolvimento      \chapter{Nome do capitulo} \section{Nome da secao} ...
+%%       Conclusão            \chapter{Conclus\~ao} ...
+%%    Elementos pós-textuais  \postextual
+%%       Referências          \bibliographystyle{...} \bibliography %usar BibTeX
+%%       Glossário            \printglossary %usando pacote {glossaries}
+%%       Apêndices            \apendices \chapter{Nome do apendice} ...
+%%       Anexos               \anexos \chapter{Nome do anexo} ...
+%%       Índices              \printindex %usando pacote {makeidx}
+%%
+%% O comando \maketitle equivale a chamar:
+%% \pretextual\folharosto\cip\folhaaprovacao
+%%
+%% A opção "impressao", além de ajustar as margens para melhor
+%% encadernação, também faz \maketitle chamar internamente o
+%% comando \capa.
+%%
+%% Caso esteja preparando a versão para visualização em tela
+%% (hipertexto), o documento pode ser configurado com o comando
+%% \hypersetup a ser chamado no preâmbulo - mais detalhes no
+%% manual do pacote hyperref. Algumas opções interessantes,
+%% com valores de exemplo, são:
+%%   bookmarksnumbered=true,
+%%	   (itens das seções exibidas no menu do PDF são numerados)
+%%   linktocpage=true,
+%%	   (links do sumário nos números de página, não nos nomes de seções)
+%%   colorlinks=true,
+%%	   (indica links pela cor do texto, não por retângulo ao redor)
+%%   linkcolor=red!80!black,
+%%	   (cor de links em geral, veja pacote xcolor para opções de cor)
+%%   urlcolor=blue,
+%%	   (cor de links para URLs - comando \url{http://...})
+%%   citecolor=teal,
+%%	   (cor de links para referências citadas no texto)
+%%   pdfstartview=FitH
+%%	   (PDF exibido inicialmente com zoom para largura da página)
+%%
+%% O comando \listas equivale a chamar:
+%% \figuras\tabelas
+%%
+%% O alinhamento e formatação dos títulos é controlado pelos comandos
+%% \pretextual, \textual e \postextual, de modo que em cada parte do trabalho
+%% os títulos são apresentados de maneira diferente. Se quiser mudar o
+%% alinhamento do título numa das partes do trabalho, logo após a chamada ao
+%% comando acima, redefina o comando \chapteralign para aplicar o alinhamento
+%% desejado. Se quiser fazer outras mudanças no formato (por exemplo, colocar
+%% os títulos em versalete (small-caps), será necessário redefinir o comando
+%% \chapterformat (veja exemplo no código da classe).
+%%
+%% Redefina o comando \fontelogo para mudar o nome da fonte a ser utilizada
+%% no logo da UnB, sendo que o padrão é "Arial" (XeLaTeX) ou "ua1" (LaTeX).
+%% Deve-se trocar por uma fonte parecida (como a Helvetica, "phv" no LaTeX)
+%% apenas se não for possível a instalação da Arial.
+%%
+%% A classe adicionalmente provê o ambiente {definition}, que exibe
+%% definições (conceituais) numeradas e formatadas com borda.
+%%
+%% Alguns dos comandos a serem chamados no preâmbulo (parte do código antes
+%% da chamada a \begin{document}) são:
+%% \title[] - Título do trabalho.
+%% \subtitle[] - Subtítulo do trabalho (se houver).
+%% \palavraschave[] - Lista de palavras-chave em português.
+%% \keywords[] - Lista de palavras-chave em inglês.
+%%   Os parâmetros opcionais definem como o valor será apresentado na página
+%%   da CIP e nas propriedades do PDF, já que estas não podem conter macros
+%%   (ex.: \title[Um estudo sobre PI elevado a PI]{Um estudo sobre $\pi^\pi$}).
+%% \diamesano - Dia mês e ano.
+%% \autor - Nome e sobrenome do autor.
+%% \coautor - Nome e sobrenome do co-autor (se houver).
+%% \coordenador[a] - Coordenador(a) do curso.
+%% \orientador[a] - Orientador(a) do trabalho.
+%% \coorientador[a] - Coorientador(a) do trabalho (se houver).
+%% \membrobanca - Adiciona membros à banca (além do orientador e coorientador).
+%% \CDU - Classificação Decimal Universal (por padrão é 004).
+%%   Valores comuns para a área (conforme http://www.udcc.org/) são:
+%%    004 Ciência da Computação e Tecnologia
+%%    004.2	Arquitetura de computadores
+%%    004.3	Hardware
+%%    004.4	Software
+%%    004.5	Interação homem-máquina
+%%    004.6	Dados
+%%    004.7	Comunicação de computadores
+%%    004.8	Inteligência artificial
+%%    004.9	Técnicas de informática orientadas a aplicação
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PROBLEMAS CONHECIDOS:
+%%
+%% * O pacote hyperref, embora muito útil para gerar um PDF para leitura em
+%%   tela, tem inúmeros problemas de compatibilidade com outros pacotes -
+%%   alguns só funcionam corretamente se forem carregados antes do hyperref.
+%%   A opção [hyperref] (ou seu sinônimo [hyperref=load]) carregam o pacote
+%%   na própria classe, o que impossibilita que algum pacote no documento do
+%%   aluno seja carregado antes do hyperref. Neste caso, usar a opção
+%%   [hyperref=config] junto com o comando \ifhyperref para carregar o
+%%   hyperref apenas quando estiver sendo gerada uma versão para leitura em
+%%   tela, como no seguinte exemplo:
+%%
+%%     %%% não carrega nameref com opção [impressao] 
+%%     \ifhyperref{\usepackage{nameref}}{}
+%%     %%% varioref só funciona se carregado entre nameref e hyperref
+%%     \usepackage{varioref}
+%%     %%% não carrega hyperref com opção [impressao] 
+%%     \ifhyperref{\usepackage{hyperref}}{}
+%%
+%% * Recomenda-se o uso do XeTeX ou pdfTeX, já que o dvips (+ps2pdf)
+%%   não suporta adequadamente links com quebra de linha. Quem deseja usar os
+%%   recursos gráficos do PSTricks pode experimentar o pacote TikZ como
+%%   alternativa que não depende de diretivas PostScript.
+%% * O suporte para o modo matemático ainda não está completo no XeTeX. Se seu
+%%   trabalho depende significativamente de fórmulas e equações, use o LaTeX
+%%   (ou XeLaTeX com \usepackage[no-math]{fontspec} e uma fonte matemática do
+%%   LaTeX que combine com a fonte escolhida para o texto).
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ORIENTAÇÕES TIPOGRÁFICAS:
+%%
+%% * Atenção aos diferentes tipos de traço:
+%%      - O hífen (-) liga prefixos, sufixos, partículas e pronomes oblíquos
+%%        (ex.: recordar-se, fazê-lo, co-habitar).
+%%      - A meia-risca (--) indica intervalos numéricos e liga palavras
+%%        independentes (ex.: páginas 1--5, viagem Londres--Estocolmo, São João
+%%        del-Rei--MG).
+%%      - O travessão (---) é usado em diálogos, quando o interlocutor muda,
+%%        e pode substituir dois pontos, parênteses ou vírgulas em apostos.
+%%   Antes e depois de travessão emprega-se espaço, nos demais casos não há 
+%%   espaço.
+%% * O ponto final marca o fim de uma sentença. Se o ponto for usado com outra
+%%   finalidade, como numa abreviatura, usar \ (ou ~ se não quiser permitir 
+%%   quebra de linha) para indicar ao TeX que não se trata de fim de sentença
+%%   (ex.: Dr.\ Spock).
+%% * Embora o padrão das normas ABNT (que, com suas "receitinhas de bolo", são
+%%   bastante rudimentares quanto à tipografia) seja espaçamento duplo entre 
+%%   linhas, o espaçamento deve ser escolhido de acordo com o tipo e tamanho
+%%   das letras.
+%%   A regra a ser seguida é: quanto maiores as linhas (quanto mais palavras
+%%   por linha), maior deve ser o espaçamento entre elas. Muitas vezes o
+%%   espaçamento simples é suficiente numa fonte bem elaborada, mas se o
+%%   tamanho médio da linha for superior a 90 caracteres, pode-se aumentar a
+%%   legibilidade definindo um modesto incremento de espaçamento (algo entre
+%%   \SetSinglespace{1.1} e \SetSinglespace{1.15}).
+%% * Como um trabalho acadêmico tem margens relativamente estreitas, para
+%%   evitar que as linhas sejam muito longas, em modo final esta classe utiliza
+%%   tamanho 12pt.
+%%   Deve haver interesse nas opções 10pt ou 11pt apenas se estiver sendo
+%%   utilizada uma fonte particularmente grande (por exemplo, que produza uma
+%%   média inferior a 80 caracteres por linha a 12pt).
+%% * Na tipografia brasileira e portuguesa é costume recuar (indentar) a
+%%   primeira linha de cada parágrafo. Como esse recuo serve para destacar
+%%   visualmente um parágrafo de seu anterior, o LaTeX não faz o recuo no
+%%   primeiro parágrafo sob um título. Quem quiser indentar também o primeiro
+%%   parágrafo só para "manter o costume" deve adicionar o pacote {indentfirst}
+%%   ao seu documento.
+%% * Citações com até três linhas ficam no próprio texto, marcadas por "aspas".
+%%   Se o texto original contiver "aspas", trocá-las por 'aspas simples'.
+%%   Se a citação tiver mais de três linhas e apenas um parágrafo, usar o
+%%   ambiente {quote}. Se a citação tiver mais de um parágrafo, usar
+%%   {quotation}. Nestes dois casos, não se deve circundar sua citação por
+%%   aspas nem alterar as aspas do texto original.
+%%   Se a citação começar com letra maiúscula, o texto imediatamente anterior
+%%   deve terminar em dois pontos (:).
+%% * Números ordinais em inglês são sucedidos por "st", "nd", "rd" ou "th",
+%%   de acordo com o seguinte algoritmo:
+%%      Se o número termina em 1 mas não termina em 11, use "st".
+%%      Se o número termina em 2 mas não termina em 12, use "nd".
+%%      Se o número termina em 3 mas não termina em 13, use "rd".
+%%      Em quaisquer outros casos, use "th".
+%%   Esse indicador de ordinal deve, preferencialmente, ser colocado como texto
+%%   superscrito. Usar 112\textsuperscript{th} e não 112$^{th}$. Se não quiser
+%%   se preocupar com essas regras, use o pacote {engord} com o comando
+%%   \engordnumber{112}.
+%% * Para indicar elipse (reticências), use \textellipsis,
+%%   usar ... (ponto ponto ponto) não é a mesma coisa.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FIM DA DOCUMENTAÇÃO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{verbatim}
