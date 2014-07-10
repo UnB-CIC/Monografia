@@ -5,7 +5,7 @@
 %% File    : unb-cic.cls (LaTeX2e class file)
 %% Authors : Flávio Maico Vaz da Costa
 %%              (based on previous versions by José Carlos L. Ralha)
-%% Version : 0.93
+%% Version : 0.95
 %% Updates : 0.5  [??/11/2004] - Initial release. don't remember the day.
 %%         : 0.75 [04/04/2005] - Fixed font problems, UnB logo
 %%                               resolution, keywords and palavras-chave
@@ -42,6 +42,12 @@
 %%                               load e config para opção hyperref, comandos
 %%                               \ifhyperref e \SetTableFigures, melhor
 %%                               formatação do quadrado CIP. 
+%%         : 0.94 [17/04/2014] - Inclusão da opção mpca. 
+%%         : 0.95 [06/06/2014] - Remoção da opção "mpca", inclusão das opções
+%%                               "doutorado", "ppginf", e "ppca" para identificar
+%%                               o programa de pós-graduação. Troca do teste 
+%%                               @mestrado por @posgraduacao.
+%%         : 0.96 [24/06/2014] - Ajuste do nome do curso/nome do programa.
 %%
 %% Definição de classe para dissertações do departamento de
 %% Ciência da Computação (CIC) da Universidade de Brasília.
@@ -77,6 +83,9 @@
 %% licenciatura - O trabalho é do curso de Licenciatura (Graduação).
 %% bacharelado  - O trabalho é do curso de Bacharelado (Graduação).
 %% mestrado     - O trabalho é de Mestrado.
+%% doutorado    - O trabalho é de Doutorado.
+%% ppginf       - O trabalho é do programa de Pós-graduação em Informática.
+%% ppca         - O trabalho é do programa de Pós-graduação em Computação Aplicada.
 %%
 %% draft - Gera o documento em modo de rascunho: não exibe as imagens e
 %%         modifica o espaçamento entre linhas.
@@ -241,7 +250,7 @@
 %% \keywords[] - Lista de palavras-chave em inglês.
 %%   Os parâmetros opcionais definem como o valor será apresentado na página
 %%   da CIP e nas propriedades do PDF, já que estas não podem conter macros
-%%   (ex.: \title[Um estudo sobre PI elevado a PI]{Um estudo sobre $\pi^\pi$}).
+%%   (ex.: \title[Um estudo sobre π elevado a π]{Um estudo sobre $\pi^\pi$}).
 %% \diamesano - Dia mês e ano.
 %% \autor - Nome e sobrenome do autor.
 %% \coautor - Nome e sobrenome do co-autor (se houver).

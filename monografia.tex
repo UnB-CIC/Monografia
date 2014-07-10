@@ -21,7 +21,7 @@
 \usepackage{indentfirst}
 \usepackage{natbib}
 \usepackage{xcolor,graphicx,url}
-\usepackage[utf8]{inputenc}
+\usepackage[utf8x]{inputenc}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{footnote}
 %\usepackage{minipage}
@@ -44,6 +44,9 @@
   filecolor=DarkScarletRed,
   urlcolor= DarkScarletRed
 }
+
+% garantir a exibição correta do símbolo na documentação original
+\DeclareTextCommandDefault\textpi{\ensuremath{\pi}}%
 
 
 
