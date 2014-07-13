@@ -165,6 +165,7 @@
 \RequirePackage[utf8]{inputenc}%         Arquivos na codificação UTF-8
 \RequirePackage[T1]{fontenc}%            Habilita busca com caracteres latinos
 \RequirePackage{lmodern}%                Habilita busca com caracteres latinos
+\RequirePackage{amsmath}%				 Amgiente para equações
 
 
 

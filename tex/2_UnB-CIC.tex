@@ -1,0 +1,338 @@
+\newcommand{\texCommand}[1]{\texttt{\textbackslash{#1}}}%
+
+\newcommand{\exemplo}[1]{%
+\vspace{\baselineskip}%
+\noindent\fbox{\begin{minipage}{\textwidth}#1\end{minipage}}%
+\\\vspace{\baselineskip}}%
+
+\newcommand{\exemploVerbatim}[1]{%
+\vspace{\baselineskip}%
+\noindent\fbox{\begin{minipage}{\textwidth}%
+#1\end{minipage}}%
+\\\vspace{\baselineskip}}%
+
+
+Este capítulo descreve a classe \unbcic, e demonstra os comandos disponíveis. A 
+última versão foi atualizada pelo Prof. Ralha, em 2008 (vide \refApendice{DocumentacaoOriginal}).
+
+%http://www.reed.edu/cis/help/latex/BibtexOverview.html
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Gerando o PDF}
+
+Para gerar corretamente as referências cruzadas, é necessário processar os arquivos 
+mais de uma vez com a seguinte sequência de comandos (supondo que o arquivo 
+principal seja \texttt{monografia.tex}).
+
+\begin{verbatim}
+pdflatex monografia
+bibtex monografia
+pdflatex monografia
+\end{verbatim}
+
+O primeiro comando processa os arquivos, indicando quais referências foram citadas
+no texto (bibliográficas ou cruzadas), o segundo comando processa o arquivo
+\texttt{.bib} que contém as informações bibliográficas, e o terceiro comando junta
+estas duas informações, produzindo um texto referências cruzadas funcionais.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Opções}
+O documento é gerado em função do curso dado como opção [obrigatória] a classe. 
+Os cursos disponíveis são:
+\begin{description}
+  \item[bcc] Bacharelado em Ciência da Computação
+  \item[lic] Licenciatura em Computação
+  % \item[eng] Engenharia de Computação
+  \item[mestrado, ppginf] Mestrado em Informática
+  \item[doutorado, ppginf] Doutorado em Informática
+  \item[mestrado, ppca] Mestrado Profissional em Computação Aplicada
+\end{description}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Arquivos}
+Os seguintes arquivos são exigidos:
+\begin{description}%
+    \item[tex/abstract.tex] Contém o \emph{abstract} do texto.%
+    \item[tex/agradecimentos.tex] Contém os agradecimentos do autor.%
+    \item[bibliografia.bib] Contém as referências bibliográficas no formato 
+    ${\mathrm{B{\scriptstyle{IB}}T_{\displaystyle E}X}}$\footnote{\url{http://www.bibtex.org}}.%
+    %\item[tex/capitulo1.tex] Contém o primeiro capítulo.%
+    \item[tex/dedicatoria.tex] Contém a dedicatória do autor.%
+    \item[tex/resumo.tex] Contém o resumo do texto.%
+\end{description}%
+
+Demais arquivos não são inseridos automatiamente, mas a classe oferece comandos 
+para inclusão de arquivos, facilitando a organização destes.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Documento}
+Todo documento em \LaTeX\ é delimitado pelo ambiente \emph{document}. O caso aqui 
+não é diferente, mas a interação é simplificada. Basicamente, a classe \unbcic\ 
+funciona ``automagicamente'' em função dos comandos e dos nomes dos arquivos. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Capítulos}
+O texto de cada capítulo deve estar em seu próprio arquivo, dentro do diretório 
+correto \texttt{tex/capitulos}. A inclusão do texto é feita pelo comando: 
+\begin{verbatim}
+\capitulo{arquivo}{título}%
+\end{verbatim}
+
+Os dois argumentos são:
+\begin{description}%
+\item[arquivo] argumento obrigatório que define o nome do arquivo que contém o 
+texto do capítulo.
+\item[título] argumento obrigatório que define o título do capítulo.
+\end{description}%
+
+Por exemplo, este texto está no arquivo \texttt{UnBCiC.tex}, e para criar os 
+dois capítulos vistos até agora, o documento seria:
+
+\begin{verbatim}
+\begin{document}%
+    \capitulo{Introducao}{Introdução}%   inclui o arquivo Introducao.tex
+    \capitulo{UnBCiC}{A Classe \unbcic}% inclui o arquivo UnBCiC.tex
+\end{document}%
+\end{verbatim}
+
+Para incluir um terceiro capítulo neste texto, cujo conteúdo trata de apresentações 
+públicas, basta criar o arquivo \texttt{tex/capitulos/Apresentacao.tex} e 
+adicioná-lo com o comando descrito.
+
+No caso de apêndices ou anexos necessários, o texto de cada um deve estar em seu 
+próprio arquivo, também dentro do diretório \texttt{tex/capitulos}. Para facilitar
+as referências cruzadas, estes devem ser inclusos com os seguintes comandos 
+(respectivamente):
+\begin{verbatim}
+\apendice{arquivo}{título}%
+\anexo{arquivo}{título}%
+\end{verbatim}
+
+Os dois argumentos funcionam exatamente como \texCommand{capitulo}. Desta forma,
+o exemplo de um documento ``completo'' seria: %
+
+\begin{verbatim}
+\begin{document}%
+    \capitulo{Introducao}{Introdução}% 
+    \capitulo{UnBCiC}{A Classe \unbcic}%
+    \capitulo{Apresentacao}{Apresentações}%
+    \apendice{DocumentacaoOriginal}{Documentação Original da Classe \unbcic}%
+    \anexo{NormasGerais}{Política de Publicação de Monografias e Dissertações 
+    no Repositório Digital do CIC}%
+\end{document}%
+\end{verbatim}
+
+Usando estes comandos, o rótulo de cada capítulo/apêndice/anexo é criado 
+automaticamente a partir do nome do arquivo para posterior referência. Por exemplo,
+este capítulo poderia ser referenciado com o comando \texCommand{ref\{UnBCiC\}}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Figuras}
+Para manter a organização dos arquivos de seu documento, as figuras devem ficar 
+separadas no diretório \texttt{img}. As funções de inclusão de figuras permanecem 
+as mesmas, mas a classe \unbcic\ oferece uma forma mais simples de inserir uma 
+figura (e de referenciá-la). Basta executar o comando:
+
+\begin{verbatim}
+\figura[posição]{arquivo}{legenda}{referência}{tamanho}%
+\end{verbatim}
+
+Os 5 argumentos são:
+\begin{description}
+\item[posição] argumento [opcional] para posicionar a figura no texto\footnote{Mais 
+informações na documentação do ambiente \emph{figure}.}.
+\item[arquivo] nome do arquivo da imagem.
+\item[legenda] legenda da figura.
+\item[referência] nome da referência da figura para referências cruzadas.
+\item[tamanho] tamanho da imagem\footnote{Mais informações na documentação do comando 
+\emph{includegraphics}.}.
+\end{description}
+
+Por exemplo, a \refFig{unbPB}, inserida com o seguinte comando:
+
+\begin{verbatim}
+\figura[!h]{contorno_preto}{Logo P/B}{unbPB}{width=0.5\textwidth}%
+\end{verbatim}
+
+\figura[!h]{contorno_preto}{Logo P/B}{unbPB}{width=0.5\textwidth}%
+
+Os comandos para referenciar figuras são:
+
+\begin{verbatim}
+\refFig{referência}%
+\refFigs{referência inicial}{referência final}%
+\end{verbatim}
+
+Onde os argumentos são:
+\begin{description}
+\item[referência] nome da referência da figura.
+\item[referência inicial] nome da referência da figura inicial da sequência de figuras.
+\item[referência final] nome da referência da figura final da sequência de figuras
+\end{description}
+
+A \refFig{unbPB} é referenciada com o comando:
+\begin{verbatim}
+\refFig{unbPB}%
+\end{verbatim}
+
+\figura{positivo_cor}{Logo colorido}{unb}{width=0.25\textwidth}%
+
+Considerando as \refFig{unb} e também \refFig{unb2}, é possível referenciar 
+a \emph{sequência} de \refFigs{unbPB}{unb2} com o comando:
+\begin{verbatim}
+\refFigs{unbPB}{unb2}%
+\end{verbatim}
+
+Embora estes comandos não ``simplifiquem'' a inclusão de figuras, eles 
+certamente facilitam a referência a elas com um padrão uniforme, e nada impede o 
+uso dos comandos padrões.
+
+\figura{positivo_cor}{Outro logo colorido}{unb2}{width=0.25\textwidth}%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Equações}
+As funções de inclusão de equações permanecem as mesmas, mas a classe \unbcic\ 
+oferece uma forma mais simples de inserir uma equação (e de referenciá-la). Basta 
+executar o comando:
+
+\begin{verbatim}
+\equacao{referência}{fórmula}%
+\end{verbatim}
+
+Os 2 argumentos são:
+\begin{description}
+\item[referência] nome da referência da equação para referências cruzadas.
+\item[fórmula] a equação em si.
+\end{description} 
+
+Por exemplo, a \refEq{pitagoras}, inserida com o seguinte comando:
+\begin{verbatim}
+\equacao{pitagoras}{a^2 + b^2 = c^2}%
+\end{verbatim}
+
+\equacao{pitagoras}{a^2 + b^2 = c^2}%
+
+Além disso, é possível quebrar em linhas, como na \refEq{pit2}, com o mesmo comando:
+\begin{verbatim}
+\equacao{pit2}{a = (x+y)^2\\b= (x*y)^2}%
+\end{verbatim}
+
+\equacao{pit2}{a = (x+y)^2\\b= (x*y)^2}%
+
+Os comandos para referenciar equações são:
+
+\begin{verbatim}
+\refEq{referência}%
+\refEqs{referência inicial}{referência final}%
+\end{verbatim}
+
+Onde os argumentos são:
+\begin{description}
+\item[referência] nome da referência da equação.
+\item[referência inicial] nome da referência da equação inicial da sequência de equações.
+\item[referência final] nome da referência da equação final da sequência de equações
+\end{description}
+
+Considerando as \refEq{pitagoras} e também \refEq{eq}, é possível referenciar 
+a \emph{sequência} de \refEqs{pitagoras}{eq} com o comando:
+\begin{verbatim}
+\refEqs{pitagoras}{eq}%
+\end{verbatim}
+
+Embora estes comandos não ``simplifiquem'' a inclusão de equações, eles 
+certamente facilitam a referência a elas com um padrão uniforme e nada impede o 
+uso dos comandos padrões.
+
+\equacao{eq}{d=c^3 - \frac{a}{b}}%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Tabelas}
+As funções de inclusão de tabelas permanecem as mesmas, mas a classe \unbcic\ 
+oferece uma forma mais simples de inserir uma tabela (e de referenciá-la). Basta 
+executar o comando:
+
+\begin{verbatim}
+\tabela{legenda}{referência}{tabela}%
+\end{verbatim}
+
+Os 3 argumentos são:
+\begin{description}
+\item[legenda] legenda da tabela.
+\item[referência] nome da referência da tabela para referências cruzadas.
+\item[tabela] o conteúdo da tabela\footnote{Mais informações na documentação do 
+ambiente \emph{tabular}.}.
+\end{description} 
+
+Por exemplo, a \refTab{exemplo}, inserida com o seguinte comando:
+\begin{verbatim}
+\tabela{Exemplo de tabela}{exemplo}{| c | c |}%
+  {\hline
+  \textbf{Item} & \textbf{Descrição} \\\hline
+  1 & Descrição 1 \\\hline
+  2 & Descrição 2 \\\hline
+  3 & Descrição 3 \\\hline}%
+\end{verbatim}
+
+\tabela{Exemplo de tabela}{exemplo}{| c | c |}%
+  {\hline
+  \textbf{Item} & \textbf{Descrição} \\\hline
+  1 & Descrição 1 \\\hline
+  2 & Descrição 2 \\\hline
+  3 & Descrição 3 \\\hline}%
+
+Os comandos para referenciar tabelas são:
+
+\begin{verbatim}
+\refTab{referência}%
+\refTabs{referência inicial}{referência final}%
+\end{verbatim}
+
+Onde os argumentos são:
+\begin{description}
+\item[referência] nome da referência da tabela.
+\item[referência inicial] nome da referência da tabela inicial da sequência de tabelas.
+\item[referência final] nome da referência da tabela final da sequência de tabelas
+\end{description}
+
+Considerando as \refTab{exemplo} e também \refTab{exemplo2}, é possível referenciar 
+a \emph{sequência} de \refTabs{exemplo}{exemplo2} com o comando:
+\begin{verbatim}
+\refTabs{exemplo}{exemplo2}%
+\end{verbatim}
+
+Embora estes comandos não ``simplifiquem'' a inclusão de tabelas, eles 
+certamente facilitam a referência a elas com um padrão uniforme, e nada impede o 
+uso dos comandos padrões.
+
+\tabela{Outro exemplo de tabela}{exemplo2}{| r | c | c | l |}%
+  {\hline
+  \textbf{\#} & \textbf{A} & \textbf{B} & \textbf{Comentário} \\\hline
+  1 & $a_1$ & $b_1$ & comentário 1\\
+  2 & $a_2$ & $b_2$ & comentário 2\\
+  3 & $a_3$ & $b_3$ & comentário 3\\\hline}%
