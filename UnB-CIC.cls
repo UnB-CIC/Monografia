@@ -153,12 +153,20 @@
 \PassOptionsToPackage{pdfdisplaydoctitle=true,pagebackref}{hyperref}
 
 \if@LoadHyperref
-	\RequirePackage{hyperref}
+	\RequirePackage[hidelinks]{hyperref}%
 \fi
 
 \RequirePackage{graphicx}
 \RequirePackage{boites}
 \RequirePackage[a4paper,includefoot]{geometry}
+
+
+\RequirePackage[brazil,american]{babel}% Idiomas
+\RequirePackage[utf8]{inputenc}%
+\RequirePackage[T1]{fontenc}% Habilita busca com caracteres latinos
+\RequirePackage{lmodern}% Habilita busca com caracteres latinos
+
+
 
 \if@baselineskip\else
 	%define o espaçamento pelo setspace
