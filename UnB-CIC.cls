@@ -732,6 +732,8 @@
 %% --- Processamento de final e início do documento ---
 %%
 \AtEndDocument{%
+	\if@PosTextualNaoIncluso\@conteudoPosTextual\fi%
+
 	\addtocounter{page}{-1}%decrementa para depois . . .
     \ifhyperref{%
 		\immediate\write\@mainaux{%
@@ -877,10 +879,14 @@
 	\@inputTeXFile{#1}%
 }%
 
+\newif\if@PosTextualNaoIncluso%
+\@PosTextualNaoInclusotrue%
+
 \newcounter{apendice}\setcounter{apendice}{0}%
 \newcommand{\apendice}[2]{%
 	\addtocounter{apendice}{1}%
 	\ifnum\value{apendice}<2%
+		\if@PosTextualNaoIncluso\@conteudoPosTextual\fi%
 	    \appendix%
 	    \addcontentsline{toc}{chapter}{\appendixname}%
 	\fi%
@@ -891,6 +897,7 @@
 \newcommand{\anexo}[2]{%
 	\addtocounter{anexo}{1}%
 	\ifnum\value{anexo}<2%
+		\if@PosTextualNaoIncluso\@conteudoPosTextual\fi%
 		\renewcommand{\appendixname}{Anexo}%
 		\ifnum\value{apendice}<1\appendix\fi%
 		\renewcommand{\thechapter}{\Roman{anexo}}%
@@ -917,7 +924,8 @@
 	\textual%
 }%
 
-\newcommand{\conteudoPosTextual}{%
+\newcommand{\@conteudoPosTextual}{%
+	\@PosTextualNaoInclusofalse%
     \postextual%
     \bibliographystyle{plain}%
     \bibliography{bibliografia}%
