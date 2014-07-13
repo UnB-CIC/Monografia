@@ -165,7 +165,8 @@
 \RequirePackage[utf8]{inputenc}%         Arquivos na codificação UTF-8
 \RequirePackage[T1]{fontenc}%            Habilita busca com caracteres latinos
 \RequirePackage{lmodern}%                Habilita busca com caracteres latinos
-\RequirePackage{amsmath}%				 Amgiente para equações
+\RequirePackage{amsmath}%				 Ambiente para equações
+\RequirePackage{xcolor}%				 Necessário para algum pacote não identificado. Relacionado ao AtBeginDocument e \@conteudoPreTextual (se por o comando dentro do begin{document}, funciona)
 
 
 
@@ -849,6 +850,8 @@
 			\fi%
 		\fi}
 	\defaultspacing% chamada inicial
+
+	\@conteudoPreTextual%
 }
 
 
@@ -908,7 +911,7 @@
 }%
 
 
-\newcommand{\conteudoPreTextual}{%
+\newcommand{\@conteudoPreTextual}{%
 	\maketitle%
 	\@IncluirSecao{dedicatoria}%
 	\@IncluirSecao{agradecimentos}%
