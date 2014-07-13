@@ -908,6 +908,7 @@
 	\selectlanguage{american}%
 	\@IncluirSecao{abstract}%
 	\selectlanguage{brazil}%
+	\@erroSeNaoExiste{bibliografia.bib}%
 
 	\tableofcontents%
 	\listoffigures%
