@@ -840,4 +840,50 @@
 	\defaultspacing% chamada inicial
 }
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% Novos Comandos %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\@referencia}[2]{#1~\ref{#2}}%
+\newcommand{\refCap}[1]{\@referencia{Capítulo}{#1}}%
+\newcommand{\refCaps}[2]{\@referencia{Capítulos}{#1}\ a \ref{#2}}%
+\newcommand{\refFig}[1]{\@referencia{Figura}{#1}}%
+\newcommand{\refFigs}[2]{\@referencia{Figuras}{#1}\ a \ref{#2}}%
+\newcommand{\refEq}[1]{\@referencia{Equação}{#1})}%
+\newcommand{\refEqs}[2]{\@referencia{Equações}{#1}\ a \ref{#2}}%
+\newcommand{\refTab}[1]{\@referencia{Tabela}{#1}}%
+\newcommand{\refTabs}[2]{\@referencia{Tabelas}{#1}\ a \ref{#2}}%
+\newcommand{\refApendice}[1]{\@referencia{Apêndice}{#1}}%
+\newcommand{\refAnexo}[1]{\@referencia{Anexo}{#1}}%
+
+\newcommand{\figura}[5][!ht]{%
+	\begin{figure}[#1]%
+		\begin{center}%
+			\includegraphics[#5]{#2}%
+			\caption{#3.\label{#4}}%
+		\end{center}%
+	\end{figure}%
+}%
+\newcommand{\equacao}[2]{%
+	\begin{equation}%
+		\label{#1}%
+		\begin{gathered}%
+			#2
+		\end{gathered}%
+	\end{equation}%
+}%
+\newcommand{\tabela}[4]{%
+	\begin{table}%
+		\centering%
+		\caption{#1.\label{#2}}%
+		\begin{tabular}{#3}%
+			#4
+		\end{tabular}%
+	\end{table}%
+}%
+
+
+
+
 \endinput
