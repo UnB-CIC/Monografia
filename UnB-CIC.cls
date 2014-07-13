@@ -845,6 +845,40 @@
 %%%%% Novos Comandos %%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\def\@texpath{tex}%
+\newcommand{\@erroSeNaoExiste}[1]{%
+    \IfFileExists{#1}{}%
+	    {\ClassError{UnB-CIC}%
+	        {Arquivo "#1.tex" nao encontrado.}
+	        {O arquivo "#1.tex" eh necessário.}}%
+}%
+
+\newcommand{\@inputTeXFile}[1]{%
+	\@erroSeNaoExiste{\@texpath/#1}%
+	\input{\@texpath/#1}%
+}%
+\newcommand{\@IncluirSecao}[1]{%
+	\begin{#1}%
+		\@inputTeXFile{#1}%
+	\end{#1}%
+}%
+
+\newcommand{\conteudoPreTextual}{%
+	\maketitle%
+	\@IncluirSecao{dedicatoria}%
+	\@IncluirSecao{agradecimentos}%
+	\@IncluirSecao{resumo}%
+	\selectlanguage{american}%
+	\@IncluirSecao{abstract}%
+	\selectlanguage{brazil}%
+
+	\tableofcontents%
+	\listoffigures%
+	\listoftables%
+}%
+
+
+
 \newcommand{\@referencia}[2]{#1~\ref{#2}}%
 \newcommand{\refCap}[1]{\@referencia{Capítulo}{#1}}%
 \newcommand{\refCaps}[2]{\@referencia{Capítulos}{#1}\ a \ref{#2}}%
