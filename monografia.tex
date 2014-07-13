@@ -5,6 +5,9 @@
 % Nós usamos a classe "UnB-CIC".  Deixe apenas uma das linhas
 % abaixo não-comentada, dependendo se você for do bacharelado ou
 % da licenciatura.
+% Opções:
+%  - Graduação: bacharelado/licenciatura
+%  - Pós-graduação: mestrado/doutorado, ppca/ppginf 
 
 \documentclass[bacharelado]{UnB-CIC}%
 %\documentclass[mestrado,ppca]{UnB-CIC}%
@@ -28,10 +31,8 @@
 \palavraschave{LaTeX, metodologia científica}
 \keywords{LaTeX, scientific method}
 
-
-
-\graphicspath{{.}{img/}}%
 \newcommand{\unbcic}{\texttt{UnB-CIC}}%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Texto
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -39,20 +40,16 @@
 \begin{document}%
     \conteudoPreTextual%
 
-\renewcommand{\appendixname}{Anexo}
+    \textual%
 
+    \input{tex/Capitulo1}%
+    % inserir demais capítulos
 
-  \textual
-  
-  \input{tex/Capitulo1}
-  % inserir demais capítulos
-  
+    \postextual%
+    \bibliographystyle{plain}%
+    \bibliography{bibliografia}%
 
-  \postextual
-  \bibliographystyle{plain}
-  \bibliography{bibliografia}
-
-\appendix
-  \input{tex/Anexo1}
-
-\end{document}
+    \renewcommand{\appendixname}{Anexo}%
+    \appendix%
+    \input{tex/Anexo1}%
+\end{document}%

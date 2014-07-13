@@ -156,15 +156,15 @@
 	\RequirePackage[hidelinks]{hyperref}%
 \fi
 
-\RequirePackage{graphicx}
+\RequirePackage{graphicx}\graphicspath{{.}{img/}}%
 \RequirePackage{boites}
 \RequirePackage[a4paper,includefoot]{geometry}
 
 
 \RequirePackage[brazil,american]{babel}% Idiomas
-\RequirePackage[utf8]{inputenc}%
-\RequirePackage[T1]{fontenc}% Habilita busca com caracteres latinos
-\RequirePackage{lmodern}% Habilita busca com caracteres latinos
+\RequirePackage[utf8]{inputenc}%         Arquivos na codificação UTF-8
+\RequirePackage[T1]{fontenc}%            Habilita busca com caracteres latinos
+\RequirePackage{lmodern}%                Habilita busca com caracteres latinos
 
 
 
