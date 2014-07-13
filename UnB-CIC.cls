@@ -871,6 +871,35 @@
 	\end{#1}%
 }%
 
+\newcommand{\capitulo}[2]{%
+	\chapter{#2}%
+	\label{#1}%
+	\@inputTeXFile{#1}%
+}%
+
+\newcounter{apendice}\setcounter{apendice}{0}%
+\newcommand{\apendice}[2]{%
+	\addtocounter{apendice}{1}%
+	\ifnum\value{apendice}<2%
+	    \appendix%
+	    \addcontentsline{toc}{chapter}{\appendixname}%
+	\fi%
+	\capitulo{#1}{#2}%
+}%
+
+\newcounter{anexo}\setcounter{anexo}{0}%
+\newcommand{\anexo}[2]{%
+	\addtocounter{anexo}{1}%
+	\ifnum\value{anexo}<2%
+		\renewcommand{\appendixname}{Anexo}%
+		\ifnum\value{apendice}<1\appendix\fi%
+		\renewcommand{\thechapter}{\Roman{anexo}}%
+	    \addcontentsline{toc}{chapter}{\appendixname}%
+	\fi%
+	\capitulo{#1}{#2}%
+}%
+
+
 \newcommand{\conteudoPreTextual}{%
 	\maketitle%
 	\@IncluirSecao{dedicatoria}%
@@ -883,6 +912,14 @@
 	\tableofcontents%
 	\listoffigures%
 	\listoftables%
+
+	\textual%
+}%
+
+\newcommand{\conteudoPosTextual}{%
+    \postextual%
+    \bibliographystyle{plain}%
+    \bibliography{bibliografia}%
 }%
 
 

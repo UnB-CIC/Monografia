@@ -12,6 +12,9 @@
 \documentclass[bacharelado]{UnB-CIC}%
 %\documentclass[mestrado,ppca]{UnB-CIC}%
 
+
+\usepackage{pdfpages}% incluir PDFs
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Informações sobre a monografia
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -40,16 +43,11 @@
 \begin{document}%
     \conteudoPreTextual%
 
-    \textual%
-
-    \input{tex/Capitulo1}%
+    \capitulo{1_Introducao}{Introdução}%
     % inserir demais capítulos
 
-    \postextual%
-    \bibliographystyle{plain}%
-    \bibliography{bibliografia}%
+    \conteudoPosTextual%
 
-    \renewcommand{\appendixname}{Anexo}%
-    \appendix%
-    \input{tex/Anexo1}%
+    \apendice{Apendice_Fichamento}{Fichamento de Artigo Científico}%
+    \anexo{Anexo1}{Parte da Documentação Original}%
 \end{document}%
