@@ -139,6 +139,15 @@
 %% --- Pacotes requeridos ---
 %%
 
+
+\RequirePackage[brazil,american]{babel}% Idiomas
+\RequirePackage[utf8]{inputenc}%         Arquivos na codificação UTF-8
+\RequirePackage[T1]{fontenc}%            Habilita busca com caracteres latinos
+\RequirePackage{lmodern}%                Habilita busca com caracteres latinos
+\RequirePackage{amsmath}%				 Ambiente para equações
+\RequirePackage{xcolor}%				 Necessário para algum pacote não identificado. Relacionado ao AtBeginDocument e \@conteudoPreTextual (se por o comando dentro do begin{document}, funciona)
+
+
 \@ifundefined{XeTeXversion}{%
 	\PassOptionsToPackage{pdftex}{hyperref}
 
@@ -160,13 +169,6 @@
 \RequirePackage{boites}
 \RequirePackage[a4paper,includefoot]{geometry}
 
-
-\RequirePackage[brazil,american]{babel}% Idiomas
-\RequirePackage[utf8]{inputenc}%         Arquivos na codificação UTF-8
-\RequirePackage[T1]{fontenc}%            Habilita busca com caracteres latinos
-\RequirePackage{lmodern}%                Habilita busca com caracteres latinos
-\RequirePackage{amsmath}%				 Ambiente para equações
-\RequirePackage{xcolor}%				 Necessário para algum pacote não identificado. Relacionado ao AtBeginDocument e \@conteudoPreTextual (se por o comando dentro do begin{document}, funciona)
 
 
 
@@ -858,6 +860,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% Novos Comandos %%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\titulo}[1]{\title{#1}}%
 
 \def\@texpath{tex}%
 \newcommand{\@erroSeNaoExiste}[1]{%
@@ -942,7 +945,7 @@
 \newcommand{\refCaps}[2]{\@referencia{Capítulos}{#1}\ a \ref{#2}}%
 \newcommand{\refFig}[1]{\@referencia{Figura}{#1}}%
 \newcommand{\refFigs}[2]{\@referencia{Figuras}{#1}\ a \ref{#2}}%
-\newcommand{\refEq}[1]{\@referencia{Equação}{#1})}%
+\newcommand{\refEq}[1]{\@referencia{Equação}{#1}}%
 \newcommand{\refEqs}[2]{\@referencia{Equações}{#1}\ a \ref{#2}}%
 \newcommand{\refTab}[1]{\@referencia{Tabela}{#1}}%
 \newcommand{\refTabs}[2]{\@referencia{Tabelas}{#1}\ a \ref{#2}}%

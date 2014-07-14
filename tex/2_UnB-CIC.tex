@@ -13,7 +13,9 @@
 
 
 Este capítulo descreve a classe \unbcic, e demonstra os comandos disponíveis. A 
-última versão foi atualizada pelo Prof. Ralha, em 2008 (vide \refAnexo{Anexo1}).
+última versão foi atualizada pelo Prof. Ralha, em 2008 (vide \refAnexo{Anexo1}). 
+A melhor forma de entender o funcionamento é observar o arquivo principal deste 
+documento (\texttt{monografia.tex}).
 
 %http://www.reed.edu/cis/help/latex/BibtexOverview.html
 
@@ -35,7 +37,7 @@ pdflatex monografia
 O primeiro comando processa os arquivos, indicando quais referências foram citadas
 no texto (bibliográficas ou cruzadas), o segundo comando processa o arquivo
 \texttt{.bib} que contém as informações bibliográficas, e o terceiro comando junta
-estas duas informações, produzindo um texto referências cruzadas funcionais.
+estas duas informações, produzindo um texto com referências cruzadas funcionais.
 
 
 
@@ -59,6 +61,47 @@ Os cursos disponíveis são:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Informações do Trabalho}%
+O passo seguinte é definir as informações do trabalho, identificando os autores 
+e os membros da banca (atenção a definição do gênero!). Por exemplo, para este
+documento foram utilizadas as seguintes definições:
+
+\begin{verbatim}
+\orientador{\prof \dr Guilherme Novaes Ramos}{CIC/UnB}%
+%\coorientador{\prof \dr José Ralha}{CIC/UnB}
+\coordenador[a]{\prof[a] \dr[a] Ada Lovelace}{Bibliothèque universelle de Genève}%
+\diamesano{24}{dezembro}{2014}%
+
+\membrobanca{\prof \dr Donald Knuth}{Stanford University}%
+\membrobanca{\dr Leslie Lamport}{Microsoft Research}%
+
+\autor{Guilherme N.}{Ramos}%
+\end{verbatim}
+
+Sobre o texto, definiu-se:
+\begin{verbatim}
+\titulo{UnB-CIC: Uma classe em LaTeX para textos do Departamento de 
+Ciência da Computação}%
+
+\palavraschave{LaTeX, metodologia científica}%
+\keywords{LaTeX, scientific method}%
+
+\CDU{002}%
+\end{verbatim}
+
+O título, apesar do tamanho reduzido, deveria apresentar uma ideia clara de todo
+o trabalho. As palavras-chave devem indicar os conceitos genéricos mais relevantes
+utilizados, e servem para indexação e busca de documentos que tratam os mesmos 
+temas.  Por fim, a Classificação Decimal Universal (CDU) é um sistema de classificação 
+documentária baseado na classificação decimal de Dewey\footnote{\url{http://pt.wikipedia.org/wiki/Classifica\%C3\%A7\%C3\%A3o_decimal_de_Dewey}}.
+O valor padrão definido é 004 (Ciência e tecnologia dos computadores, informática), 
+mas tente ser o mais preciso possível conforme o conteúdo de seu documento. Neste,
+foi definido como 002 (documentação, documentos em geral).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Arquivos}
 Os seguintes arquivos são exigidos:
 \begin{description}%
@@ -71,7 +114,7 @@ Os seguintes arquivos são exigidos:
     \item[tex/resumo.tex] Contém o resumo do texto.%
 \end{description}%
 
-Demais arquivos não são inseridos automatiamente, mas a classe oferece comandos 
+Demais arquivos não são inseridos automaticamente, mas a classe oferece comandos 
 para inclusão de arquivos, facilitando a organização destes.
 
 
@@ -130,18 +173,18 @@ o exemplo de um documento ``completo'' seria: %
 
 \begin{verbatim}
 \begin{document}%
-    \capitulo{1_Introducao}{Introdução}% 
+    \capitulo{1_Introducao}{Introdução}%
     \capitulo{2_UnB-CIC}{A Classe \unbcic}%
-    \capitulo{Apresentacao}{Apresentações}%
-    \apendice{DocumentacaoOriginal}{Documentação Original da Classe \unbcic}%
-    \anexo{NormasGerais}{Política de Publicação de Monografias e Dissertações 
-    no Repositório Digital do CIC}%
+    \capitulo{3_Apresentacao}{Apresentações}%
+
+    \apendice{Apendice_Fichamento}{Fichamento de Artigo Científico}%
+    \anexo{Anexo1}{Parte da Documentação Original}%
 \end{document}%
 \end{verbatim}
 
 Usando estes comandos, o rótulo de cada capítulo/apêndice/anexo é criado 
 automaticamente a partir do nome do arquivo para posterior referência. Por exemplo,
-este capítulo poderia ser referenciado com o comando \texCommand{ref\{UnBCiC\}}.
+este capítulo poderia ser referenciado com o comando \texCommand{ref\{2\_UnB-CIC\}}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -186,7 +229,7 @@ Onde os argumentos são:
 \begin{description}
 \item[referência] nome da referência da figura.
 \item[referência inicial] nome da referência da figura inicial da sequência de figuras.
-\item[referência final] nome da referência da figura final da sequência de figuras
+\item[referência final] nome da referência da figura final da sequência de figuras.
 \end{description}
 
 A \refFig{unbPB} é referenciada com o comando:
@@ -196,7 +239,7 @@ A \refFig{unbPB} é referenciada com o comando:
 
 \figura{positivo_cor}{Logo colorido}{unb}{width=0.25\textwidth}%
 
-Considerando as \refFig{unb} e também \refFig{unb2}, é possível referenciar 
+Considerando a \refFig{unb} e também a \refFig{unb2}, é possível referenciar 
 a \emph{sequência} de \refFigs{unbPB}{unb2} com o comando:
 \begin{verbatim}
 \refFigs{unbPB}{unb2}%
@@ -253,10 +296,10 @@ Onde os argumentos são:
 \begin{description}
 \item[referência] nome da referência da equação.
 \item[referência inicial] nome da referência da equação inicial da sequência de equações.
-\item[referência final] nome da referência da equação final da sequência de equações
+\item[referência final] nome da referência da equação final da sequência de equações.
 \end{description}
 
-Considerando as \refEq{pitagoras} e também \refEq{eq}, é possível referenciar 
+Considerando a \refEq{pitagoras} e também a \refEq{eq}, é possível referenciar 
 a \emph{sequência} de \refEqs{pitagoras}{eq} com o comando:
 \begin{verbatim}
 \refEqs{pitagoras}{eq}%
@@ -286,7 +329,7 @@ Os 3 argumentos são:
 \item[legenda] legenda da tabela.
 \item[referência] nome da referência da tabela para referências cruzadas.
 \item[tabela] o conteúdo da tabela\footnote{Mais informações na documentação do 
-ambiente \emph{tabular}.}.
+ambiente \emph{\href{http://en.wikibooks.org/wiki/LaTeX/Tables}{tabular}}.}.
 \end{description} 
 
 Por exemplo, a \refTab{exemplo}, inserida com o seguinte comando:
@@ -317,10 +360,10 @@ Onde os argumentos são:
 \begin{description}
 \item[referência] nome da referência da tabela.
 \item[referência inicial] nome da referência da tabela inicial da sequência de tabelas.
-\item[referência final] nome da referência da tabela final da sequência de tabelas
+\item[referência final] nome da referência da tabela final da sequência de tabelas.
 \end{description}
 
-Considerando as \refTab{exemplo} e também \refTab{exemplo2}, é possível referenciar 
+Considerando a \refTab{exemplo} e também a \refTab{exemplo2}, é possível referenciar 
 a \emph{sequência} de \refTabs{exemplo}{exemplo2} com o comando:
 \begin{verbatim}
 \refTabs{exemplo}{exemplo2}%
