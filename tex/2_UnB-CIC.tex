@@ -207,16 +207,16 @@ informações na documentação do ambiente \emph{figure}.}.
 \item[legenda] legenda da figura.
 \item[referência] nome da referência da figura para referências cruzadas.
 \item[tamanho] tamanho da imagem\footnote{Mais informações na documentação do comando 
-\emph{includegraphics}.}.
+\texCommand{includegraphics}.}.
 \end{description}
 
 Por exemplo, a \refFig{unbPB}, inserida com o seguinte comando:
 
 \begin{verbatim}
-\figura[!h]{contorno_preto}{Logo P/B}{unbPB}{width=0.5\textwidth}%
+\figura[!h]{contorno_preto}{Marca P/B}{unbPB}{width=0.5\textwidth}%
 \end{verbatim}
 
-\figura[!h]{contorno_preto}{Logo P/B}{unbPB}{width=0.5\textwidth}%
+\figura[!h]{contorno_preto}{Marca P/B}{unbPB}{width=0.5\textwidth}%
 
 Os comandos para referenciar figuras são:
 
@@ -237,7 +237,7 @@ A \refFig{unbPB} é referenciada com o comando:
 \refFig{unbPB}%
 \end{verbatim}
 
-\figura{positivo_cor}{Logo colorido}{unb}{width=0.25\textwidth}%
+\figura{positivo_cor}{Marca colorida}{unb}{width=0.25\textwidth}%
 
 Considerando a \refFig{unb} e também a \refFig{unb2}, é possível referenciar 
 a \emph{sequência} de \refFigs{unbPB}{unb2} com o comando:
@@ -249,7 +249,7 @@ Embora estes comandos não ``simplifiquem'' a inclusão de figuras, eles
 certamente facilitam a referência a elas com um padrão uniforme, e nada impede o 
 uso dos comandos padrões.
 
-\figura{positivo_cor}{Outro logo colorido}{unb2}{width=0.25\textwidth}%
+\figura{positivo_cor}{Outra marca colorida}{unb2}{width=0.25\textwidth}%
 
 
 
