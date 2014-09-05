@@ -10,7 +10,7 @@
 % \documentclass[mestrado,ppca]{UnB-CIC}%
 
 \usepackage{pdfpages}% incluir PDFs, usado no âpendice
-
+\usepackage[acronym]{glossaries}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -31,18 +31,24 @@
 \palavraschave{LaTeX, metodologia científica}%
 \keywords{LaTeX, scientific method}%
 
-\CDU{002}%
+\CDU{004}%
 
 \newcommand{\unbcic}{\texttt{UnB-CIC}}%
 
 
 
+\newacronym{unb}{UnB}{Universidade de Brasília}%
+\newacronym{ia}{IA}{Inteligência Artificial}%
+\makeglossaries%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Texto
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}%
+	% \printglossary[type=\acronymtype,title=Abbreviations]%
     %\capitulo{nome do arquivo}{título do capítulo}
     \capitulo{1_Introducao}{Introdução}%
+    \gls{unb} asdasda \gls{ia} asdasd \gls{unb}
+	\printglossary[type=\acronymtype] % prints just the list of acronyms
     \capitulo{2_UnB-CIC}{A Classe \unbcic}%
     \capitulo{3_Apresentacao}{Apresentações}%
 
