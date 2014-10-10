@@ -48,6 +48,10 @@
                       Licenciatura}
                     \gdef\@mododeescrita{Monografia}}%
 
+\DeclareOptionX{engenharia}{%
+                    \gdef\@nomecurso{Curso de Engenharia de Computa\c{c}\~ao}
+                    \gdef\@mododeescrita{Monografia}}%
+
 
 \def\@nomecurso{\@empty}%
 \def\@assunto{Monografia (\@ifundefined{XeTeXversion}{Gradua\c{c}\~ao}{Graduação})}
