@@ -49,7 +49,7 @@
                     \gdef\@mododeescrita{Monografia}}%
 
 \DeclareOptionX{engenharia}{%
-                    \gdef\@nomecurso{Curso de Engenharia de Computa\c{c}\~ao}
+                    \gdef\@nomecurso{Curso de Engenharia da Computa\c{c}\~ao}
                     \gdef\@mododeescrita{Monografia}}%
 
 
