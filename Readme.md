@@ -18,9 +18,10 @@ comando:
     pdflatex monografia
 
 Para gerar as referências bibliográficas, utiliza-se a ferramenta [`bibtex`](http://www.bibtex.org/),
-sendo necessários mais dois passos subsequentes:
+sendo necessários mais três passos subsequentes:
 
     bibtex monografia
+    pdflatex monografia
     pdflatex monografia
 
 O mesmo resultado pode ser obtido usando uma interface gráfica mais amigável, 
