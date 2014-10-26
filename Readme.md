@@ -28,10 +28,10 @@ O mesmo resultado pode ser obtido usando uma interface gráfica mais amigável,
 como o [TeXworks](http://www.tug.org/texworks/). Neste caso, bastaria abrir o 
 arquivo principal com o editor e executar a compilação.
 
+### MiKTeX
+
+Utilizando a instalação básica da versão 2.9.5105 (Windows XP 32-bit) do [MiKTeX](http://miktex.org/), ao abrir o arquivo ```monografia.tex``` com o editor instalado (TeXworks), e executando a opção padrão oferecida ```pdfLaTeX+MakeIndex+BibTeX```, o programa indicou a ausência dos seguintes pacotes: _xcolor_, _url_, _boites_, _setspace_, _pdfpages_, _eso-pic_, _supp-pdf_, e _arial_; mas já oferecendo a opção de instalação. Após instalar, o PDF foi gerado sem problemas.
+
 ## Observações
 
-Usuários do [MiKTeX](http://miktex.org/) geralmente reclamam de erro relacionado 
-a ausência do pacote [hypernat](http://mirrors.ctan.org/macros/latex/contrib/hypernat/hypernat.sty)
-devido ao uso do pacote [natbib](http://www.ctan.org/tex-archive/macros/latex/contrib/natbib). 
-Isto pode ser facilmente remediado acrescentando-o ao diretório onde está o arquivo
-principal.
+Por conta das possivéis configurações de bibliografia, alguns usuários *erroneamente* utilizam o pacote [natbib](http://www.ctan.org/tex-archive/macros/latex/contrib/natbib), geralmente levando a erro relacionado a ausência do pacote [hypernat](http://mirrors.ctan.org/macros/latex/contrib/hypernat/hypernat.sty).  Isto pode ser facilmente remediado acrescentando-o ao diretório onde está o arquivo principal.
