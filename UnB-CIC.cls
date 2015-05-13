@@ -118,7 +118,7 @@
 
 \newcommand{\ifhyperref}[2]{\if@ForScreenView #1\else #2\fi}
 
-%define macro apenas se estiver indefinida 
+%define macro apenas se estiver indefinida
 \def\@defifundef#1#2{\begingroup\expandafter\ifx\csname #1\endcsname\relax%
 \expandafter\gdef\csname #1\endcsname{#2}
 \fi\endgroup}
@@ -173,8 +173,8 @@
 \RequirePackage{boites}
 \RequirePackage[a4paper,includefoot]{geometry}
 
-
-
+\usepackage[acronym]{glossaries}% Após o hyperref!
+\makeglossaries%
 
 \if@baselineskip\else
 	%define o espaçamento pelo setspace
@@ -227,7 +227,7 @@
 \def\markboth#1#2{\def\MakeUppercase##1{##1}\old@markboth{#1}{#2}\let\MakeUppercase\old@MakeUppercase}
 \let\old@markright\markright
 \def\markright#1{\def\MakeUppercase##1{##1}\old@markright{#1}\let\MakeUppercase\old@MakeUppercase}
-	
+
 %evita órfãs/viúvas e quebras de nota de rodapé
 \clubpenalty=9999
 \widowpenalty=9999
@@ -256,7 +256,7 @@
 \renewenvironment*{quotation}
 	{\old@quotation\begin{singlespace}\small}
 	{\end{singlespace}\old@endquotation}
-	
+
 \let\old@verse\verse
 \let\old@endverse\endverse
 \renewenvironment*{verse}
@@ -389,7 +389,7 @@
 	\cleardoublepage\pagenumbering{arabic}
 	\@pagestyle{\style@textual}
 }
-	
+
 \newcommand\postextual{%
 	\renewcommand{\chapteralign}{\centering}
 
@@ -397,8 +397,8 @@
 	\renewcommand\thesection{\thechapter.\protect\textlinf{\arabic{section}}}
 	\renewcommand\thesubsection{\thesection.\protect\textlinf{\arabic{subsection}}}
 	\renewcommand\thesubsubsection{\thesubsection.\protect\textlinf{\arabic{subsubsection}}}
-	
-	%evita problema com bookmarksnumbered=true 
+
+	%evita problema com bookmarksnumbered=true
 	\pdfstringdefDisableCommands{\renewcommand*{\textlinf}[1]{##1}}
 }
 
@@ -518,7 +518,7 @@
 		\else
 			\ifx\@nomequatro\undefined
 			     	\@defquartomembro{#1}{#2}
-			\else		
+			\else
 			     	\ClassError{UnB-CIC}
 			     		{A banca so pode ter 3 ou 4 membros}
 			     		{Lembrar que orientador e coorientador ja fazem parte da banca}
@@ -543,7 +543,7 @@
 	\pdfbookmark{Abstract}{abstract}%
 		\chapter*{Abstract}}%
 		{\vskip 15pt\noindent\textbf{Keywords:}\ \@@keywords%
-	\end{otherlanguage*} 
+	\end{otherlanguage*}
 	\end{paginatitulo}}
 
 \newenvironment{resumo}
@@ -789,7 +789,7 @@
 			\let\addcontentsline\@addcontentsline
 		\fi
 	}
-	
+
 	%traducoes para glossaries.sty
 	\@ifpackageloaded{glossaries}{%
 		\@ifundefined{XeTeXversion}{
@@ -917,6 +917,10 @@
 	\capitulo{#1}{#2}%
 }%
 
+\newcommand{\@listofacronyms}{%
+	\@inputTeXFile{siglas}%
+	\printglossary[type=\acronymtype]%
+}%
 
 \newcommand{\@conteudoPreTextual}{%
 	\maketitle%
@@ -931,6 +935,7 @@
 	\tableofcontents%
 	\listoffigures%
 	\listoftables%
+	\@listofacronyms%
 
 	\textual%
 }%
@@ -943,6 +948,7 @@
 }%
 
 
+\newcommand{\sigla}[2]{\newacronym{#1}{#1}{#2}}%
 
 \newcommand{\@referencia}[2]{#1~\ref{#2}}%
 \newcommand{\refCap}[1]{\@referencia{Capítulo}{#1}}%
@@ -981,8 +987,6 @@
 		\end{tabular}%
 	\end{table}%
 }%
-
-
 
 
 \endinput
