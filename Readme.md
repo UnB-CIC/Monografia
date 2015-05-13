@@ -19,7 +19,7 @@ Para gerar as referências bibliográficas, utiliza-se a ferramenta [`bibtex`](h
 bibtex monografia
 ```
 
-E para gerar as referências de siglas/abreviaturas, a ferramenta `makeglossaries`:
+E para gerar as referências de siglas/abreviaturas, a ferramenta [`makeglossaries`](https://www.ctan.org/pkg/glossaries):
 
 ```bash
 makeglossaries monografia
