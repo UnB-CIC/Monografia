@@ -151,6 +151,9 @@
 \RequirePackage{amsmath}%				 Ambiente para equações
 \RequirePackage{xcolor}%				 Necessário para algum pacote não identificado. Relacionado ao AtBeginDocument e \@conteudoPreTextual (se por o comando dentro do begin{document}, funciona)
 
+% Adiciona inserção do listings
+\RequirePackage{listings}
+
 
 \@ifundefined{XeTeXversion}{%
 	\PassOptionsToPackage{pdftex}{hyperref}
@@ -306,10 +309,30 @@
 	\pretextual\folharosto\cip\folhaaprovacao
 }
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Correções para o pacote listings
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Corrige nomes do pacote listings
+\renewcommand{\lstlistlistingname}{Exemplos}
+\renewcommand{\lstlistingname}{Exemplo}
+
+\renewcommand\lstlistoflistings{%
+    \chapter*{\thispagestyle{empty}
+      \centering\lstlistlistingname
+      \@mkboth{\MakeUppercase\lstlistlistingname}%
+              {\MakeUppercase\lstlistlistingname}}%
+    \addcontentsline{toc}{chapter}{\lstlistlistingname}
+    \@starttoc{lol}%
+    }
+
 %comandos em português e simplificados
 \def\figuras{\addtocchapter{\listfigurename}\listoffigures} %adiciona ao sumario
 \def\tabelas{\addtocchapter{\listtablename}\listoftables} %adiciona ao sumario
-\def\listas{\figuras\tabelas} %imprime as duas listas em ordem
+\def\listas{\figuras\tabelas\lstlistoflistings} %imprime as duas listas em ordem
 \def\sumario{\tableofcontents} %apenas traduz
 \def\apendices{\appendix} %apenas traduz
 \def\anexos{\par%muda nome e estilo de numeracao
@@ -934,7 +957,10 @@
 
 	\tableofcontents%
 	\listoffigures%
-	\listoftables%
+	\listoftables%	
+	% Adiciona listings
+	\lstlistoflistings%
+	
 	\@listofacronyms%
 
 	\textual%
@@ -987,6 +1013,5 @@
 		\end{tabular}%
 	\end{table}%
 }%
-
 
 \endinput
