@@ -322,7 +322,7 @@
 
 \renewcommand\lstlistoflistings{%
     \chapter*{\thispagestyle{empty}
-      \centering\itshape\lstlistlistingname
+      \centering\lstlistlistingname
       \@mkboth{\MakeUppercase\lstlistlistingname}%
               {\MakeUppercase\lstlistlistingname}}%
     \addcontentsline{toc}{chapter}{\lstlistlistingname}
