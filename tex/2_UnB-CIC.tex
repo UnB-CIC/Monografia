@@ -136,7 +136,7 @@ funciona ``automagicamente'' em função dos comandos e dos nomes dos arquivos.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Capítulos}
 O texto de cada capítulo deve estar em seu próprio arquivo, dentro do diretório
-correto \texttt{tex/capitulos}. A inclusão do texto é feita pelo comando:
+correto \texttt{tex}. A inclusão do texto é feita pelo comando:
 \begin{verbatim}
 \capitulo{arquivo}{título}%
 \end{verbatim}
@@ -148,19 +148,19 @@ texto do capítulo.
 \item[título] argumento obrigatório que define o título do capítulo.
 \end{description}%
 
-Por exemplo, este texto está no arquivo \texttt{UnBCiC.tex}, e para criar os
+Por exemplo, este texto está no arquivo \texttt{2\_UnB-CIC.tex}, e para criar os
 dois capítulos vistos até agora, o documento seria:
 
 \begin{verbatim}
 \begin{document}%
-    \capitulo{1_Introducao}{Introdução}%   inclui o arquivo Introducao.tex
-    \capitulo{2_UnB-CIC}{A Classe \unbcic}% inclui o arquivo UnBCiC.tex
+  \capitulo{1_Introducao}{Introdução}% inclui o arquivo 1_Introducao.tex
+  \capitulo{2_UnB-CIC}{A Classe \unbcic}% inclui o arquivo 2_UnB-CIC.tex
 \end{document}%
 \end{verbatim}
 
-Para incluir um terceiro capítulo neste texto, cujo conteúdo trata de apresentações
-públicas, basta criar o arquivo \texttt{tex/3\_Apresentacao.tex} e
-adicioná-lo com o comando descrito.
+Para incluir um terceiro capítulo neste texto, cujo conteúdo trata de trabalhos
+conclusão de curso, basta criar o arquivo \texttt{tex/3\_TCC.tex} e adicioná-lo
+com o comando descrito.
 
 No caso de apêndices ou anexos necessários, o texto de cada um deve estar em seu
 próprio arquivo, também dentro do diretório \texttt{tex/capitulos}. Para facilitar
@@ -176,18 +176,47 @@ o exemplo de um documento ``completo'' seria: %
 
 \begin{verbatim}
 \begin{document}%
-    \capitulo{1_Introducao}{Introdução}%
-    \capitulo{2_UnB-CIC}{A Classe \unbcic}%
-    \capitulo{3_Apresentacao}{Apresentações}%
+  \capitulo{1_Introducao}{Introdução}%
+  \capitulo{2_UnB-CIC}{A Classe \unbcic}%
+  \capitulo{3_TCC}{Trabalho de Conclusão de Curso}%
 
-    \apendice{Apendice_Fichamento}{Fichamento de Artigo Científico}%
-    \anexo{Anexo1}{Parte da Documentação Original}%
+  \apendice{Apendice_Fichamento}{Fichamento de Artigo Científico}%
+  \anexo{Anexo1}{Parte da Documentação Original}%
 \end{document}%
 \end{verbatim}
 
 Usando estes comandos, o rótulo de cada capítulo/apêndice/anexo é criado
-automaticamente a partir do nome do arquivo para posterior referência. Por exemplo,
-este capítulo poderia ser referenciado com o comando \texCommand{ref\{2\_UnB-CIC\}}.
+automaticamente a partir do nome do arquivo para posterior referência cruzada.
+Por exemplo, este capítulo pode ser referenciado com o comando
+\texCommand{ref\{2\_UnB-CIC\}} (cujo resultado é: \ref{2_UnB-CIC}), mas a classe
+oferece opções mais interessantes. Os comandos para referenciar çapítulos são:
+
+\begin{verbatim}
+\refCap{referência}%
+\refCaps{referência inicial}{referência final}%
+\end{verbatim}
+
+Onde os argumentos são:
+\begin{description}
+\item[referência] nome da referência do capítulo.
+\item[referência inicial] nome da referência do capítulo inicial da sequência de capítulos.
+\item[referência final] nome da referência do capítulo final da sequência de capítulos.
+\end{description}
+
+O \refCap{1_Introducao} é referenciado com o comando:
+\begin{verbatim}
+\refCap{1_Introducao}%
+\end{verbatim}
+
+Considerando  \refCap{1_Introducao} e também o \refCap{2_UnB-CIC}, é possível referenciar
+a \emph{sequência} de \refCaps{1_Introducao}{2_UnB-CIC} com o comando:
+\begin{verbatim}
+\refCaps{1_Introducao}{2_UnB-CIC}%
+\end{verbatim}
+
+Embora estes comandos não ``simplifiquem'' a inclusão de figuras, eles
+certamente facilitam a referência a elas com um padrão uniforme, e nada impede o
+uso dos comandos padrões.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -205,7 +234,7 @@ figura (e de referenciá-la). Basta executar o comando:
 Os 5 argumentos são:
 \begin{description}
 \item[posição] argumento [opcional] para posicionar a figura no texto\footnote{Mais
-informações na documentação do ambiente \emph{figure}.}.
+informações na documentação do ambiente \emph{figure}, mas este é um bom começo: \url{http://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions}.}.
 \item[arquivo] nome do arquivo da imagem.
 \item[legenda] legenda da figura.
 \item[referência] nome da referência da figura para referências cruzadas.
@@ -246,6 +275,23 @@ Considerando a \refFig{unb} e também a \refFig{unb2}, é possível referenciar
 a \emph{sequência} de \refFigs{unbPB}{unb2} com o comando:
 \begin{verbatim}
 \refFigs{unbPB}{unb2}%
+\end{verbatim}
+
+Algumas vezes deseja-se usar a figura de uma das referências bibliográficas. Neste caso, utilize o comando:
+
+\begin{verbatim}
+\figuraBib[posição]{arquivo}{legenda}{bib}{referência}{tamanho}%
+\end{verbatim}
+
+Os argumentos são os mesmos do comando \texCommand{figura}, acrescidos do
+\begin{description}
+\item[bib] nome da referência bibliográfica que originou a figura.
+\end{description}
+
+Por exemplo, a \refFig{latexvsword} foi gerada com o comando:
+\begin{verbatim}
+\figuraBib{miktex}{\LaTeX\ vs MS Word}
+{pinteric_latex_2004}{latexvsword}{width=.45\textwidth}%
 \end{verbatim}
 
 Embora estes comandos não ``simplifiquem'' a inclusão de figuras, eles

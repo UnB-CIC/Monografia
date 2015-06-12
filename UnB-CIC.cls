@@ -943,7 +943,7 @@
 \newcommand{\@conteudoPosTextual}{%
 	\@PosTextualNaoInclusofalse%
     \postextual%
-    \bibliographystyle{plain}%
+    \bibliographystyle{unb-cic}%
     \bibliography{bibliografia}%
 }%
 
@@ -962,14 +962,18 @@
 \newcommand{\refApendice}[1]{\@referencia{Apêndice}{#1}}%
 \newcommand{\refAnexo}[1]{\@referencia{Anexo}{#1}}%
 
-\newcommand{\figura}[5][!ht]{%
+\newcommand{\figuraBib}[6][!ht]{%
 	\begin{figure}[#1]%
 		\begin{center}%
-			\includegraphics[#5]{#2}%
-			\caption{#3.\label{#4}}%
+			\includegraphics[#6]{#2}%
+			\caption[#3.]{#3\ifx#4\empty\else~\cite{#4}\fi.\label{#5}}%
 		\end{center}%
 	\end{figure}%
 }%
+\newcommand{\figura}[5][!ht]{%
+	\figuraBib[#1]{#2}{#3}{}{#4}{#5}%
+}%
+
 \newcommand{\equacao}[2]{%
 	\begin{equation}%
 		\label{#1}%
