@@ -982,14 +982,19 @@
 		\end{gathered}%
 	\end{equation}%
 }%
-\newcommand{\tabela}[4]{%
+
+\newcommand{\tabelaBib}[5]{%
 	\begin{table}%
 		\centering%
-		\caption{#1.\label{#2}}%
-		\begin{tabular}{#3}%
-			#4
+		\caption[#1.]{#1\ifx#2\empty\else~\cite{#2}\fi.\label{#3}}%
+		\begin{tabular}{#4}%
+			#5
 		\end{tabular}%
 	\end{table}%
+}%
+
+\newcommand{\tabela}[4]{%
+	\tabelaBib{#1}{}{#2}{#3}{#4}%
 }%
 
 

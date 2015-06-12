@@ -283,7 +283,7 @@ Algumas vezes deseja-se usar a figura de uma das referências bibliográficas. N
 \figuraBib[posição]{arquivo}{legenda}{bib}{referência}{tamanho}%
 \end{verbatim}
 
-Os argumentos são os mesmos do comando \texCommand{figura}, acrescidos do
+Os argumentos são os mesmos do comando \texCommand{figura}, acrescidos de:
 \begin{description}
 \item[bib] nome da referência bibliográfica que originou a figura.
 \end{description}
@@ -370,13 +370,14 @@ oferece uma forma mais simples de inserir uma tabela (e de referenciá-la). Bast
 executar o comando:
 
 \begin{verbatim}
-\tabela{legenda}{referência}{tabela}%
+\tabela{legenda}{referência}{especificações}{tabela}%
 \end{verbatim}
 
-Os 3 argumentos são:
+Os 4 argumentos são:
 \begin{description}
 \item[legenda] legenda da tabela.
 \item[referência] nome da referência da tabela para referências cruzadas.
+\item[especificações] alinhamento de cada coluna da tabela.
 \item[tabela] o conteúdo da tabela\footnote{Mais informações na documentação do
 ambiente \emph{\href{http://en.wikibooks.org/wiki/LaTeX/Tables}{tabular}}.}.
 \end{description}
@@ -416,6 +417,34 @@ Considerando a \refTab{exemplo} e também a \refTab{exemplo2}, é possível refe
 a \emph{sequência} de \refTabs{exemplo}{exemplo2} com o comando:
 \begin{verbatim}
 \refTabs{exemplo}{exemplo2}%
+\end{verbatim}
+
+Algumas vezes deseja-se usar a tabela de uma das referências bibliográficas. Neste caso, utilize o comando:
+
+\begin{verbatim}
+\tabelaBib{legenda}{bib}{referência}{especificações}{tabela}%
+\end{verbatim}
+
+Os argumentos são os mesmos do comando \texCommand{tabela}, acrescidos de:
+\begin{description}
+\item[bib] nome da referência bibliográfica que originou a tabela.
+\end{description}
+
+\tabelaBib{Matriz de Decisão de Eisenhower}
+{covey_first_1995}{EisenhowerTable}{ r | c | c }{
+                        & \textbf{Urgente} & \textbf{Não Urgente} \\\hline%
+\textbf{Importante}     & Crises       & Planejamentos \\\hline%
+\textbf{Não importante} & Interrupções & Distrações%
+}%
+
+Por exemplo, a \refTab{EisenhowerTable}\footnote{Vale a pena assistir o vídeo da palestra \emph{Time Management} de Randy Pausch: \url{http://www.cs.virginia.edu/~robins/Randy/}} foi gerada com o comando:
+\begin{verbatim}
+\tabelaBib{Matriz de Decisão de Eisenhower}
+{covey_first_1995}{EisenhowerTable}{ r | c | c }{%
+                    & \textbf{Urgente} & \textbf{Não Urgente} \\\hline%
+\textbf{Importante}     & Crises       & Planejamentos \\\hline%
+\textbf{Não importante} & Interrupções & Distrações%
+}%
 \end{verbatim}
 
 Embora estes comandos não ``simplifiquem'' a inclusão de tabelas, eles
