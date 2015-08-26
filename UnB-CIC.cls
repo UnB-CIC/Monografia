@@ -303,7 +303,7 @@
 %maketitle para gerar as páginas iniciais
 \def\maketitle{%
 	\if@ForScreenView\relax\else\capa\fi
-	\pretextual\folharosto\cip\folhaaprovacao
+	\pretextual\folharosto\newpage\null\thispagestyle{empty}\newpage\folhaaprovacao
 }
 
 %comandos em português e simplificados
@@ -696,46 +696,6 @@
 	\ifx#3\empty\else\advance#11,\r@numerarcip#1#3\@nil\fi%
 }
 
-\def\cip{
-	\begin{paginatitulo}\noindent\onehalfspacing%
-		\@universidade\ --- \@siglauni\\
-		\@instituto\\
-		\@departamento\\%
-		\if@posgraduacao P\'{o}s-gradua\c{c}\~{a}o em \@nomeDoPrograma\else\@nomecurso\fi%
-
-		\vfill\noindent%
-		\@sexocoordenador: \@nomecoordenador
-
-		\vfill\noindent%
-		Banca examinadora composta por:\par\vskip 2mm %
-		\indent
-			\begin{tabular}{l}%
-				\@nomeorientador\ (\@sexoorientador) --- \@filiorientador\\
- 				\@nomedois\
- 				%%\if@coorientador
- 					%%(\@sexocoorientador)
- 				%%\fi
- 				 --- \@filidois\\
-  				\@nometres\ --- \@filitres
-	 			\if@quartomembro
-					\\\@nomequatro\ --- \@filiquatro
- 				\fi
-			\end{tabular}
-
-		\vfill\noindent%
-		\textbf{CIP --- Cataloga\c{c}\~{a}o Internacional na Publica\c{c}\~{a}o}%
-		\vskip 15pt
-		\@quadrado%
-
- 		\vfill\noindent%
-		\begin{tabular}{ll}%
-		Endere\c{c}o: & \@universidade\\
-		& Campus Universit\'ario Darcy Ribeiro --- Asa Norte\\
-		& CEP \textlinf{70910-900} \\ & \@cidadeuf\ --- \@pais
-		\end{tabular}
-	\end{paginatitulo}\defaultspacing%
-}
-
 %%
 %% --- Processamento de final e início do documento ---
 %%
@@ -758,14 +718,14 @@
 \AtBeginDocument{%
 	%define propriedades do PDF e carrega pacotes auxiliares
 	\@ifpackageloaded{hyperref}{
-    	\hypersetup{
+	\hypersetup{
             pdftitle=\@title,
             pdfauthor=\@author,
             pdfsubject=\@assunto,
             pdfkeywords=\@palavraschave}
 		\@ifpackageloaded{natbib}{
 			%compatibilidade entre natbib e hyperref
-    		\RequirePackage{hypernat}
+		\RequirePackage{hypernat}
 		}{}
 		%posiciona melhor os links para captions
         \RequirePackage[all]{hypcap}
