@@ -303,7 +303,13 @@
 %maketitle para gerar as páginas iniciais
 \def\maketitle{%
 	\if@ForScreenView\relax\else\capa\fi
-	\pretextual\folharosto\newpage\null\thispagestyle{empty}\newpage\folhaaprovacao
+	\pretextual\folharosto%
+    \if@posgraduacao%
+	\newpage\thispagestyle{empty}%
+	\begin{picture}(0,0)\put(-90,-747){\includegraphics{doc/BDM.pdf}}\end{picture}%
+	% \includepdf (comando adequado neste caso) precisa ser reconfigurado em modo pretextual, \includegraphics é uma solução rápida, mas ara isso usa valores arbitrários para posicionar a página.
+	\clearpage\fi%
+	\newpage\folhaaprovacao%
 }
 
 %comandos em português e simplificados
@@ -830,8 +836,8 @@
 \newcommand{\@erroSeNaoExiste}[1]{%
     \IfFileExists{#1}{}%
 	    {\ClassError{UnB-CIC}%
-	        {Arquivo "#1.tex" nao encontrado.}
-	        {O arquivo "#1.tex" eh necessário.}}%
+	        {Arquivo "#1" nao encontrado.}
+	        {O arquivo "#1" eh necessário.}}%
 }%
 
 \newcommand{\@inputTeXFile}[1]{%

@@ -744,7 +744,7 @@ FUNCTION {mastersthesis}
   new.block
   format.title "title" output.check
   new.block
-  "Master's thesis" format.thesis.type output.nonnull
+  "Dissertação (Mestrado)" format.thesis.type output.nonnull
   school "school" output.check
   address output
   format.date "year" output.check
@@ -773,7 +773,7 @@ FUNCTION {phdthesis}
   new.block
   format.btitle "title" output.check
   new.block
-  "PhD thesis" format.thesis.type output.nonnull
+  "Tese (Doutorado)" format.thesis.type output.nonnull
   school "school" output.check
   address output
   format.date "year" output.check
