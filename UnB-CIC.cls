@@ -63,7 +63,7 @@
 \DeclareOptionX{doutorado}{\@posgraduacaotrue%
 					\gdef\@nomecurso{Doutorado}
                     \gdef\@assunto{Tese de Doutorado}%
-                    \gdef\@mododeescrita{Disserta\c{c}\~ao}}%
+                    \gdef\@mododeescrita{Tese}}%
 
 \DeclareOptionX{ppginf}{%
 					\gdef\@nomeDoPrograma{Inform\'{a}tica}}%
