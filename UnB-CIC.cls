@@ -5,7 +5,6 @@
 %% --- Contextualização do departamento ---
 %%
 
-\def\@cdu{004}
 \def\@departamento{Departamento de Ci\^{e}ncia da Computa\c{c}\~{a}o}
 \def\@instituto{Instituto de Ci\^{e}ncias Exatas}
 \def\@universidade{Universidade de Bras\'{\i}lia}
@@ -14,13 +13,6 @@
 \def\@uf{DF}
 \def\@cidadeuf{\@cidade--\@uf}
 \def\@pais{Brasil}
-
-%%
-%% --- Valores para CIP ---
-%%
-
-\def\@ilustracao{: il.\ }
-\def\@formatocapa{29,5 cm}
 
 %%
 %% --- Definição de opções ---
@@ -39,31 +31,29 @@
 %opções de curso
 \newif\if@posgraduacao\@posgraduacaofalse%
 \DeclareOptionX{bacharelado}{%
-                    \gdef\@nomecurso{Bacharelado em Ci\^encia da
-                       Computa\c{c}\~ao}%
-                    \gdef\@mododeescrita{Monografia}}%
+    \gdef\@nomecurso{Bacharelado em Ci\^encia da Computa\c{c}\~ao}%
+    \gdef\@mododeescrita{Monografia}}%
 
 \DeclareOptionX{licenciatura}{%
-                    \gdef\@nomecurso{Curso de Computa\c{c}\~ao ---
-                      Licenciatura}
-                    \gdef\@mododeescrita{Monografia}}%
+    \gdef\@nomecurso{Curso de Computa\c{c}\~ao --- Licenciatura}%
+    \gdef\@mododeescrita{Monografia}}%
 
 \DeclareOptionX{engenharia}{%
-                    \gdef\@nomecurso{Curso de Engenharia da Computa\c{c}\~ao}
-                    \gdef\@mododeescrita{Monografia}}%
+    \gdef\@nomecurso{Curso de Engenharia da Computa\c{c}\~ao}%
+    \gdef\@mododeescrita{Monografia}}%
 
 
 \def\@nomecurso{\@empty}%
 \def\@assunto{Monografia (\@ifundefined{XeTeXversion}{Gradua\c{c}\~ao}{Graduação})}
 \DeclareOptionX{mestrado}{\@posgraduacaotrue%
-					\gdef\@nomecurso{Mestrado}
-                    \gdef\@assunto{Disserta\c{c}\~ao (Mestrado)}%
-                    \gdef\@mododeescrita{Disserta\c{c}\~ao}}%
+    \gdef\@nomecurso{Mestrado}%
+    \gdef\@assunto{Disserta\c{c}\~ao (Mestrado)}%
+    \gdef\@mododeescrita{Disserta\c{c}\~ao}}%
 
 \DeclareOptionX{doutorado}{\@posgraduacaotrue%
-					\gdef\@nomecurso{Doutorado}
-                    \gdef\@assunto{Tese de Doutorado}%
-                    \gdef\@mododeescrita{Disserta\c{c}\~ao}}%
+    \gdef\@nomecurso{Doutorado}%
+    \gdef\@assunto{Tese de Doutorado}%
+    \gdef\@mododeescrita{Tese}}%
 
 \DeclareOptionX{ppginf}{%
 					\gdef\@nomeDoPrograma{Inform\'{a}tica}}%
@@ -72,6 +62,9 @@
 \DeclareOptionX{ppca}{\@ppcatrue%
 					\gdef\@nomeDoPrograma{Computa\c{c}\~{a}o Aplicada}%
 					\gdef\@nomecurso{Mestrado Profissional}}%
+
+\newif\if@qualificacao\@qualificacaofalse%
+\DeclareOptionX{qualificacao}{\@qualificacaotrue}%
 
 %modo de geração do PDF
 \newif\if@ForScreenView
@@ -149,8 +142,7 @@
 \RequirePackage[T1]{fontenc}%            Habilita busca com caracteres latinos
 \RequirePackage{lmodern}%                Habilita busca com caracteres latinos
 \RequirePackage{amsmath}%				 Ambiente para equações
-\RequirePackage{xcolor}%				 Necessário para algum pacote não identificado. Relacionado ao AtBeginDocument e \@conteudoPreTextual (se por o comando dentro do begin{document}, funciona)
-
+\RequirePackage{xcolor}% 				 Necessário para algum pacote não identificado. Relacionado ao AtBeginDocument e \@conteudoPreTextual (se por o comando dentro do begin{document}, funciona)
 
 \@ifundefined{XeTeXversion}{%
 	\PassOptionsToPackage{pdftex}{hyperref}
@@ -305,24 +297,16 @@
 	\if@ForScreenView\relax\else\capa\fi
 	\pretextual\folharosto%
     \if@posgraduacao%
-	\newpage\thispagestyle{empty}%
-	\begin{picture}(0,0)\put(-90,-747){\includegraphics{doc/BDM.pdf}}\end{picture}%
-	% \includepdf (comando adequado neste caso) precisa ser reconfigurado em modo pretextual, \includegraphics é uma solução rápida, mas ara isso usa valores arbitrários para posicionar a página.
-	\clearpage\fi%
+		\if@qualificacao%
+		\else%
+			\newpage\thispagestyle{empty}%
+			\begin{picture}(0,0)\put(-90,-747){\includegraphics{doc/BDM.pdf}}\end{picture}%
+			% \includepdf (comando adequado neste caso) precisa ser reconfigurado em modo pretextual, \includegraphics é uma solução rápida, mas ara isso usa valores arbitrários para posicionar a página.
+			\clearpage%
+		\fi%
+	\fi%
 	\newpage\folhaaprovacao%
 }
-
-%comandos em português e simplificados
-\def\figuras{\addtocchapter{\listfigurename}\listoffigures} %adiciona ao sumario
-\def\tabelas{\addtocchapter{\listtablename}\listoftables} %adiciona ao sumario
-\def\listas{\figuras\tabelas} %imprime as duas listas em ordem
-\def\sumario{\tableofcontents} %apenas traduz
-\def\apendices{\appendix} %apenas traduz
-\def\anexos{\par%muda nome e estilo de numeracao
-  \setcounter{chapter}{0}%
-  \setcounter{section}{0}%
-  \gdef\@chapapp{Anexo}%
-  \gdef\thechapter{\@Roman\c@chapter}}
 
 %suporte hyperref para anexos
 \ifhyperref{%
@@ -436,9 +420,6 @@
 \def\diamesano#1#2#3{\def\@dia{#1}%
                      \def\@mes{#2}%
                      \def\@ano{#3}}
-
-%definicao do CDU - Classificação Decimal Universal
-\def\CDU#1{\gdef\@cdu{#1}}
 
 %definicao do autor
 \newcommand{\autor}[2]{
@@ -600,12 +581,13 @@
 			\@mododeescrita\ %
 			\if@posgraduacao%
 				\if@ppca%
-					apresentada como requisito parcial para conclus\~ao do\\
-					\@nomecurso\ em \@nomeDoPrograma%
+					apresentada como requisito parcial para %
+					\if@qualificacao{qualificação}\else{conclus\~ao}\fi~do\\%
 				\else%
 					apresentada como requisito parcial para\\
-					conclus\~ao do \@nomecurso\ em \@nomeDoPrograma%
+					\if@qualificacao{qualificação}\else{conclus\~ao}\fi~do %
 				\fi%
+				\@nomecurso\ em \@nomeDoPrograma%
 			\else%
 				apresentada como requisito parcial\\
 				para conclus\~ao do \@nomecurso%
@@ -633,12 +615,13 @@
 			\@mododeescrita\ %
 			\if@posgraduacao%
 				\if@ppca%
-					apresentada como requisito parcial para conclus\~ao do\\
-					\@nomecurso\ em \@nomeDoPrograma%
+					apresentada como requisito parcial para %
+					\if@qualificacao{qualificação}\else{conclus\~ao}\fi~do\\%
 				\else%
 					apresentada como requisito parcial para\\
-					conclus\~ao do \@nomecurso\ em \@nomeDoPrograma%
+					\if@qualificacao{qualificação}\else{conclus\~ao}\fi~do %
 				\fi%
+				\@nomecurso\ em \@nomeDoPrograma%
 			\else%
 				apresentada como requisito parcial\\
 				para conclus\~ao do \@nomecurso%
@@ -662,44 +645,6 @@
 		\end{center}%
 		\defaultspacing%
 	\end{paginatitulo}%
-}
-
-%quadrado da CIP
-\def\@quadrado{%
-	\def\@boxwidth{13cm}%
-	\def\@boxparwidth{12.75cm}%
-	\def\@quadskip{0.5em}%
-	\def\@qquadskip{1em}%
-    \framebox{
-    	\hskip\@quadskip%
-		\parbox{\@boxwidth}{
-			\vskip\@quadskip%
-			\primeiroautorinv.\\[\baselineskip]%
-			\mbox{\hskip\@quadskip}%
-			\parbox{\@boxparwidth}{%
-				\@title\ / %
-				\@ifundefined{segundoautor}
-					{\primeiroautor}%apenas um autor
-					{\primeiroautor, \segundoautor}.%dois autores
-				\ \@cidade\ :\ \@siglauni, \@ano.\\%
-				\csname ref\endcsname{TotPaginas} p. \@ilustracao; \@formatocapa.\\[\baselineskip]%
-				\@assunto\ --- \@universidade, \@cidade, \@ano.\\[\baselineskip]%
- 				\parbox{\@boxparwidth}{\raggedright\numerarcip{\@palavraschave}}%
-			}\\[\baselineskip]%
-			CDU \textlinf{\@cdu}%
-			\vskip\@quadskip%
-		}%
-		\hskip\@qquadskip%
-	}%
-}
-\def\@gobblespace#1{#1}
-\def\numerarcip#1{
-	\newcount\@tempa\@tempa=1
-	\expandafter\r@numerarcip\expandafter\@tempa#1,\@nil%
-}
-\def\r@numerarcip#1#2,#3\@nil{
-	\the#1.~\@gobblespace#2%
-	\ifx#3\empty\else\advance#11,\r@numerarcip#1#3\@nil\fi%
 }
 
 %%
