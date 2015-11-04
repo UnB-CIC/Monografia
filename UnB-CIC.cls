@@ -143,6 +143,8 @@
 \RequirePackage{lmodern}%                Habilita busca com caracteres latinos
 \RequirePackage{amsmath}%				 Ambiente para equações
 \RequirePackage{xcolor}% 				 Necessário para algum pacote não identificado. Relacionado ao AtBeginDocument e \@conteudoPreTextual (se por o comando dentro do begin{document}, funciona)
+\RequirePackage[figure,table]{totalcount}%
+
 
 \@ifundefined{XeTeXversion}{%
 	\PassOptionsToPackage{pdftex}{hyperref}
@@ -844,8 +846,8 @@
 	\@erroSeNaoExiste{bibliografia.bib}%
 
 	\tableofcontents%
-	\listoffigures%
-	\listoftables%
+	\iftotalfigures\listoffigures\fi%
+	\iftotaltables\listoftables\fi%
 	\@listofacronyms%
 
 	\textual%
