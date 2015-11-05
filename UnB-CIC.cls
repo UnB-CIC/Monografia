@@ -50,7 +50,8 @@
     \gdef\@assunto{Disserta\c{c}\~ao (Mestrado)}%
     \gdef\@mododeescrita{Disserta\c{c}\~ao}}%
 
-\DeclareOptionX{doutorado}{\@posgraduacaotrue%
+\newif\if@doutorado\@doutoradofalse%
+\DeclareOptionX{doutorado}{\@posgraduacaotrue\@doutoradotrue%
     \gdef\@nomecurso{Doutorado}%
     \gdef\@assunto{Tese de Doutorado}%
     \gdef\@mododeescrita{Tese}}%
@@ -498,6 +499,12 @@
 \def\@defterceiromembro#1#2{\def\@nometres{#1}\def\@filitres{#2}}
 \def\@defquartomembro#1#2{\def\@nomequatro{#1}\def\@filiquatro{#2}\@quartomembrotrue}
 
+% Se for doutorado, há um quinto membro
+\newif\if@quintomembro\@quintomembrofalse%
+\if@doutorado%
+	\def\@defquintomembro#1#2{\def\@nomecinco{#1}\def\@filicinco{#2}}%
+\fi%
+
 \def\membrobanca#1#2{
 	\ifx\@nomedois\undefined
 		\@defsegundomembro{#1}{#2}
@@ -506,11 +513,22 @@
 			\@defterceiromembro{#1}{#2}
 		\else
 			\ifx\@nomequatro\undefined
-			     	\@defquartomembro{#1}{#2}
+				\@defquartomembro{#1}{#2}
 			\else
-			     	\ClassError{UnB-CIC}
-			     		{A banca so pode ter 3 ou 4 membros}
-			     		{Lembrar que orientador e coorientador ja fazem parte da banca}
+                \if@doutorado%
+                    \if@quintomembro%
+                        \ClassError{UnB-CIC}%
+                            {A banca so pode ter 5 membros}%
+                            {Lembrar que orientador e coorientador ja fazem parte da banca}%
+                    \else
+                        \@defquintomembro{#1}{#2}%
+                        \@quintomembrotrue%
+                    \fi%
+                \else%
+                    \ClassError{UnB-CIC}%
+                        {A banca so pode ter 3 ou 4 membros}%
+                        {Lembrar que orientador e coorientador ja fazem parte da banca}%
+                \fi%
 			\fi
 		\fi
 	\fi
@@ -631,14 +649,23 @@
 			\vfill%
 			\@nomeorientador\ (\@sexoorientador)\\
 			\@filiorientador\\[1cm]
-			\begin{tabular}{cc}
-				\@nomedois & \@nometres\\
-				\@filidois & \@filitres
-			\end{tabular}\\[1cm]
-			\if@quartomembro
-				\@nomequatro\\%
-				\@filiquatro\\[1cm]
-			\fi
+			\if@quintomembro%
+				\begin{tabular}{cc}
+					\@nomedois & \@nometres\\
+					\@filidois & \@filitres\\[1cm]%
+					\@nomequatro & \@nomecinco\\%
+					\@filiquatro & \@filicinco%
+				\end{tabular}\\[1cm]
+			\else%
+				\begin{tabular}{cc}
+					\@nomedois & \@nometres\\
+					\@filidois & \@filitres%
+				\end{tabular}\\[1cm]
+				\if@quartomembro%
+					\@nomequatro\\%
+					\@filiquatro\\[1cm]
+				\fi%
+			\fi%
 			\@nomecoordenador\\
 			\@sexocoordenador \ do\ %
 			\if@posgraduacao Programa de P\'{o}s-gradua\c{c}\~{a}o em \@nomeDoPrograma\else \@nomecurso\fi%
@@ -769,6 +796,24 @@
 			\fi%
 		\fi}
 	\defaultspacing% chamada inicial
+
+	% Controle de membros da banca
+	\ifx\@nometres\undefined%
+        \ClassError{UnB-CIC}%
+            {A banca deve ter pelo menos 3 membros}%
+            {Lembrar que orientador e coorientador ja fazem parte da banca}%
+    \fi%
+    \if@doutorado%
+		\if@qualificacao%
+		\else%
+	        \if@quintomembro%
+	        \else%
+	            \ClassError{UnB-CIC}%
+	                {A banca deve ter 5 membros}%
+	                {Lembrar que orientador e coorientador ja fazem parte da banca}%%
+	        \fi%
+	    \fi%
+    \fi%
 
 	\@conteudoPreTextual%
 }
