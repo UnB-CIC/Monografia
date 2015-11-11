@@ -168,7 +168,7 @@
 \RequirePackage{boites}
 \RequirePackage[a4paper,includefoot]{geometry}
 
-\usepackage[acronym]{glossaries}% Após o hyperref!
+\usepackage[acronym,nonumberlist]{glossaries}% Após o hyperref!
 \makeglossaries%
 
 \if@baselineskip\else
