@@ -325,13 +325,18 @@
 %%
 %% --- Macros/comandos auxiliares ---
 %%
+%%
+%% --- Macros/comandos auxiliares ---
+%%
 \def\prof{\@ifnextchar[{\@prof@}{\@prof}}
 \def\@prof#1{Prof.\ #1}
 \def\@prof@[#1]#2{Prof.\nobreak\kern-.05em\textordfeminine\ #2}
 
 \def\dr{\@ifnextchar[{\@dr@}{\@dr}}
 \def\@dr#1{Dr.\ #1}
-\def\@dr@[#1]#2{Dr.\nobreak\kern-.05em\textordfeminine\ #2}
+\def\@dr@[#1]#2{Dr.a\nobreak\kern-.05em\ #2}
+
+%%
 
 %%
 %% --- Páginas do trabalho ---
