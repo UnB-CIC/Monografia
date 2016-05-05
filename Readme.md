@@ -2,6 +2,12 @@
 
 Modelo padrão de formatação de documentos acadêmicos do [Departamento de Ciência da Computação](www.cic.unb.br) da [Universidade de Brasília](www.unb.br). Este modelo existe para __padronizar__ a formatação dos documentos, portanto **evite** modificar a classe ou usar configurações/pacotes diferentes dos definidos.
 
+## Licença
+
+Esta obra está licenciado com uma Licença [Creative Commons Atribuição-CompartilhaIgual 4.0 Internacional](http://creativecommons.org/licenses/by-sa/4.0/).
+
+![Licença Creative Commons](img/cc.png?raw=true )
+
 ## Instalação
 
 Assume-se que há uma instalação correta do [TeX Live](https://www.tug.org/texlive/). Para qualquer dos sistemas operacionais mais comuns (Unix/Mac OS/Windows), basta copiar todos os arquivos disponíveis. A forma mais simples de fazer isso é baixar o arquivo [ZIP](https://github.com/UnB-CIC/Monografia/archive/master.zip) e descompactá-lo em sua área de trabalho.
