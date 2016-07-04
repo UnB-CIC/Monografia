@@ -158,11 +158,6 @@
 
 	\def\@textscale#1#2{{\addfontfeatures{Scale=#1}#2}}
 }%
-\PassOptionsToPackage{pdfdisplaydoctitle=true,pagebackref}{hyperref}
-
-\if@LoadHyperref
-	\RequirePackage[hidelinks]{hyperref}%
-\fi
 
 \RequirePackage{graphicx}\graphicspath{{.}{img/}}%
 \RequirePackage{boites}
@@ -174,6 +169,12 @@
 \if@baselineskip\else
 	%define o espaçamento pelo setspace
 	\RequirePackage{setspace}
+\fi
+
+\PassOptionsToPackage{pdfdisplaydoctitle=true,pagebackref}{hyperref}
+
+\if@LoadHyperref
+	\RequirePackage[hidelinks]{hyperref}%
 \fi
 
 %para gerar o label {TotPaginas}
