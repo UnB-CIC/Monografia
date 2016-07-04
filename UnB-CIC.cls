@@ -163,19 +163,19 @@
 \RequirePackage{boites}
 \RequirePackage[a4paper,includefoot]{geometry}
 
-\usepackage[acronym,nonumberlist]{glossaries}% Após o hyperref!
-\makeglossaries%
-
 \if@baselineskip\else
 	%define o espaçamento pelo setspace
 	\RequirePackage{setspace}
 \fi
 
-\PassOptionsToPackage{pdfdisplaydoctitle=true,pagebackref}{hyperref}
+\PassOptionsToPackage{pdfdisplaydoctitle=true,pagebackref,linktocpage=true}{hyperref}%
 
 \if@LoadHyperref
 	\RequirePackage[hidelinks]{hyperref}%
 \fi
+
+\usepackage[acronym,nonumberlist]{glossaries}% Após o hyperref!
+\makeglossaries%
 
 %para gerar o label {TotPaginas}
 \RequirePackage{atbegshi}
