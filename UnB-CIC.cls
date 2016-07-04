@@ -177,6 +177,9 @@
 \usepackage[acronym,nonumberlist]{glossaries}% Após o hyperref!
 \makeglossaries%
 
+\usepackage[tocindentauto]{tocstyle}% Indentação de anexos na TOC
+\usetocstyle{standard}%
+
 %para gerar o label {TotPaginas}
 \RequirePackage{atbegshi}
 \newcounter{TotPaginas}
