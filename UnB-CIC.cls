@@ -887,8 +887,10 @@
 
 \newcommand{\@conteudoPreTextual}{%
 	\maketitle%
-	\@IncluirSecao{dedicatoria}%
-	\@IncluirSecao{agradecimentos}%
+	\if@qualificacao\else%
+		\@IncluirSecao{dedicatoria}%
+		\@IncluirSecao{agradecimentos}%
+	\fi%
 	\@IncluirSecao{resumo}%
 	\selectlanguage{american}%
 	\@IncluirSecao{abstract}%
