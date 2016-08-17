@@ -139,6 +139,7 @@
 
 
 \RequirePackage[brazil,american]{babel}% Idiomas
+\RequirePackage[fixlanguage]{babelbib}%  Idioma das referências
 \RequirePackage[utf8]{inputenc}%         Arquivos na codificação UTF-8
 \RequirePackage[T1]{fontenc}%            Habilita busca com caracteres latinos
 \RequirePackage{lmodern}%                Habilita busca com caracteres latinos
@@ -899,6 +900,7 @@
 	\selectlanguage{american}%
 	\@IncluirSecao{abstract}%
 	\selectlanguage{brazil}%
+    \selectbiblanguage{brazil}%
 	\@erroSeNaoExiste{bibliografia.bib}%
 
 	\tableofcontents%
@@ -912,7 +914,7 @@
 \newcommand{\@conteudoPosTextual}{%
 	\@PosTextualNaoInclusofalse%
     \postextual%
-    \bibliographystyle{unb-cic}%
+	\bibliographystyle{babplain}
     \bibliography{bibliografia}%
 }%
 
