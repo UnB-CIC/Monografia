@@ -71,7 +71,7 @@ Se isso não funcionar, pode tentar gerar um [novo _issue_](https://github.com/U
 
 Este modelo existe para **padronizar** a formatação dos documentos, portanto **evite** modificar a classe ou usar configurações/pacotes diferentes dos definidos. Claro, há _raras_ circunstâncias em que algo um pouco diferente se faz necessário, nesses casos a documentação e sítios especializados são seus principais aliados.
 
-  * [Procure na internet](http://bfy.tw/25sy)
+  * [Procure na internet](http://bfy.tw/9AHK)
   * [**LaTeX Wikibook**](https://en.wikibooks.org/wiki/LaTeX/)
   * [StackExchange](http://tex.stackexchange.com)
   * [LaTeX Community](http://www.latex-community.org)
