@@ -1,20 +1,28 @@
 \NeedsTeXFormat{LaTeX2e}[1994/12/01]
 \ProvidesClass{UnB-CIC}[2014/07/10 Classe para trabalhos CIC UnB]
 
-\RequirePackage{iflang}
+\RequirePackage{ifthen}
+
+\newif\ifen
+\newif\ifbr
+
+\newcommand{\en}[1]{\ifen#1\fi}
+\newcommand{\br}[1]{\ifbr#1\fi}
+
+\brtrue
 
 %%
 %% --- Contextualização do departamento ---
 %%
 
-\def\@departamento{\IfLanguageName{american}{Computer Science Department}{Departamento de Ci\^{e}ncia da Computa\c{c}\~{a}o}}%
-\def\@instituto{\IfLanguageName{american}{Exact Sciences Institute}{Instituto de Ci\^{e}ncias Exatas}}
-\def\@universidade{\IfLanguageName{american}{University of Bras\'ilia}{Universidade de Bras\'{\i}lia}}
+\def\@departamento{\en{Computer Science Department}\br{Departamento de Ci\^{e}ncia da Computa\c{c}\~{a}o}}%
+\def\@instituto{\en{Exact Sciences Institute}\br{Instituto de Ci\^{e}ncias Exatas}}
+\def\@universidade{\en{University of Bras\'ilia}\br{Universidade de Bras\'{\i}lia}}
 \def\@siglauni{UnB}
 \def\@cidade{Bras\'ilia}
 \def\@uf{DF}
 \def\@cidadeuf{\@cidade--\@uf}
-\def\@pais{\IfLanguageName{american}{Brazil}{Brasil}}
+\def\@pais{\en{Brazil}\br{Brasil}}
 
 %%
 %% --- Definição de opções ---
@@ -33,38 +41,38 @@
 %opções de curso
 \newif\if@posgraduacao\@posgraduacaofalse%
 \DeclareOptionX{bacharelado}{%
-    \gdef\@nomecurso{\IfLanguageName{american}{Bachelor Degree in Computer Science}{Bacharelado em Ci\^encia da Computa\c{c}\~ao}}%
-    \gdef\@mododeescrita{\IfLanguageName{american}{Monograph}{Monografia}}}%
+    \gdef\@nomecurso{\en{Bachelor Degree in Computer Science}\br{Bacharelado em Ci\^encia da Computa\c{c}\~ao}}%
+    \gdef\@mododeescrita{\en{Monograph}\br{Monografia}}}%
 
 \DeclareOptionX{licenciatura}{%
-    \gdef\@nomecurso{\IfLanguageName{american}{Computer Science Degree}{Curso de Computa\c{c}\~ao --- Licenciatura}}%
-    \gdef\@mododeescrita{\IfLanguageName{american}{Monograph}{Monografia}}}%
+    \gdef\@nomecurso{\en{Computer Science Degree}\br{Curso de Computa\c{c}\~ao --- Licenciatura}}%
+    \gdef\@mododeescrita{\en{Monograph}\br{Monografia}}}%
 
 \DeclareOptionX{engenharia}{%
-    \gdef\@nomecurso{\IfLanguageName{american}{Computer Engineering}{Curso de Engenharia da Computa\c{c}\~ao}}%
-    \gdef\@mododeescrita{\IfLanguageName{american}{Monograph}{Monografia}}}%
+    \gdef\@nomecurso{\en{Computer Engineering}\br{Curso de Engenharia da Computa\c{c}\~ao}}%
+    \gdef\@mododeescrita{\en{Monograph}\br{Monografia}}}%
 
 
 \def\@nomecurso{\@empty}%
-\def\@assunto{\IfLanguageName{american}{Graduation Monograph}{Monografia (\@ifundefined{XeTeXversion}{Gradua\c{c}\~ao}{Graduação})}}
+\def\@assunto{\en{Graduation Monograph}\br{Monografia (\@ifundefined{XeTeXversion}{Gradua\c{c}\~ao}{Graduação})}}
 \DeclareOptionX{mestrado}{\@posgraduacaotrue%
-    \gdef\@nomecurso{\IfLanguageName{american}{Master's Degree}{Mestrado}}%
-    \gdef\@assunto{\IfLanguageName{american}{Master's Degree Dissertation}{Disserta\c{c}\~ao (Mestrado)}}%
-    \gdef\@mododeescrita{\IfLanguageName{american}{Dissertation}{Disserta\c{c}\~ao}}}%
+    \gdef\@nomecurso{\en{Master's Degree}\br{Mestrado}}%
+    \gdef\@assunto{\en{Master's Degree Dissertation}\br{Disserta\c{c}\~ao (Mestrado)}}%
+    \gdef\@mododeescrita{\en{Dissertation}\br{Disserta\c{c}\~ao}}}%
 
 \newif\if@doutorado\@doutoradofalse%
 \DeclareOptionX{doutorado}{\@posgraduacaotrue\@doutoradotrue%
-    \gdef\@nomecurso{\IfLanguageName{american}{Doctoral Degree}{Doutorado}}%
-    \gdef\@assunto{\IfLanguageName{american}{Doctoral Thesis}{Tese de Doutorado}}%
-    \gdef\@mododeescrita{\IfLanguageName{american}{Thesis}{Tese}}}%
+    \gdef\@nomecurso{\en{Doctoral Degree}\br{Doutorado}}%
+    \gdef\@assunto{\en{Doctoral Thesis}\br{Tese de Doutorado}}%
+    \gdef\@mododeescrita{\en{Thesis}\br{Tese}}}%
 
 \DeclareOptionX{ppginf}{%
-					\gdef\@nomeDoPrograma{\IfLanguageName{american}{Informatics}{Inform\'{a}tica}}}%
+					\gdef\@nomeDoPrograma{\en{Informatics}\br{Inform\'{a}tica}}}%
 
 \newif\if@ppca\@ppcafalse%
 \DeclareOptionX{ppca}{\@ppcatrue%
-					\gdef\@nomeDoPrograma{\IfLanguageName{american}{Applied Computing}{Computa\c{c}\~{a}o Aplicada}}%
-					\gdef\@nomecurso{\IfLanguageName{american}{Professional Master's Degree}{Mestrado Profissional}}}%
+					\gdef\@nomeDoPrograma{\en{Applied Computing}\br{Computa\c{c}\~{a}o Aplicada}}%
+					\gdef\@nomecurso{\en{Professional Master's Degree}\br{Mestrado Profissional}}}%
 
 \newif\if@qualificacao\@qualificacaofalse%
 \DeclareOptionX{qualificacao}{\@qualificacaotrue}%
@@ -298,7 +306,7 @@
 \renewcommand{\bibliography}[1]{%
 	%renomeia a seção após influência maligna do Babel
 	\renewcommand*{\bibname}
-		{\IfLanguageName{american}{References}{\@ifundefined{XeTeXversion}{Refer\^encias}{Referências}}}
+		{\en{References}\br{\@ifundefined{XeTeXversion}{Refer\^encias}{Referências}}}
 	\addtocchapter{\bibname}
 	\singlespacing\@bibliography{#1}\defaultspacing}
 
@@ -465,11 +473,11 @@
               {\at@coorda}%Se primeiro argumento opcional chama esta
               {\at@coordo}}%senão chama esta rotina
 
-\def\at@coorda[#1]#2#3{\def\@sexocoordenador{\IfLanguageName{american}{Coordinator}{Coordenadora}}%
+\def\at@coorda[#1]#2#3{\def\@sexocoordenador{\en{Coordinator}\br{Coordenadora}}%
                         \def\@nomecoordenador{#2}%
                         \def\@filicoordenador{#3}}
 
-\def\at@coordo#1#2{\def\@sexocoordenador{\IfLanguageName{american}{Coordinator}{Coordenador}}%
+\def\at@coordo#1#2{\def\@sexocoordenador{\en{Coordinator}\br{Coordenador}}%
                         \def\@nomecoordenador{#1}%
                         \def\@filicoordenador{#2}}
 
@@ -478,11 +486,11 @@
               {\at@orienta}%Se primeiro argumento opcional chama esta
               {\at@oriento}}%senao chama esta rotina
 
-\def\at@orienta[#1]#2#3{\def\@sexoorientador{\IfLanguageName{american}{Advisor}{Orientadora}}%
+\def\at@orienta[#1]#2#3{\def\@sexoorientador{\en{Advisor}\br{Orientadora}}%
                         \def\@nomeorientador{#2}%
                         \def\@filiorientador{#3}}
 
-\def\at@oriento#1#2{\def\@sexoorientador{\IfLanguageName{american}{Advisor}{Orientador}}%
+\def\at@oriento#1#2{\def\@sexoorientador{\en{Advisor}\br{Orientador}}%
                         \def\@nomeorientador{#1}%
                         \def\@filiorientador{#2}}
 
@@ -492,12 +500,12 @@
               {\at@coorienta}%Se primeiro argumento opcional chama esta
               {\at@cooriento}}%senao chama esta rotina
 
-\def\at@coorienta[#1]#2#3{\def\@sexocoorientador{\IfLanguageName{american}{Co-advisor}{Coorientadora}}%
+\def\at@coorienta[#1]#2#3{\def\@sexocoorientador{\en{Co-advisor}\br{Coorientadora}}%
                         \def\@nomecoorientador{#2}%
                         \def\@filicoorientador{#3}}%
                         %%%\@defsegundomembro{#2}{#3}}
 
-\def\at@cooriento#1#2{\def\@sexocoorientador{\IfLanguageName{american}{Co-advisor}{Coorientador}}%
+\def\at@cooriento#1#2{\def\@sexocoorientador{\en{Co-advisor}\br{Coorientador}}%
                         \def\@nomecoorientador{#1}%
                         \def\@filicoorientador{#2}}%
                         %%%\@defsegundomembro{#1}{#2}}
@@ -613,26 +621,26 @@
 			\@mododeescrita\ %
 			\if@posgraduacao%
 				\if@ppca%
-                \IfLanguageName{american}{%
+                \en{%
 					submitted in partial fullfilment of the requirements to %
 					\if@qualificacao{qualify for}\else{}\fi\\%
-                }{%
+                }\br{%
 					apresentada como requisito parcial para %
 					\if@qualificacao{qualificação}\else{conclus\~ao}\fi~do\\}%
 				\else%
-                \IfLanguageName{american}{%
+                \en{%
 					submitted in partial fullfilment of\\the requirements to %
 					\if@qualificacao{qualify for}\else{}\fi~%
-                }{%
+                }\br{%
 					apresentada como requisito parcial para\\
 					\if@qualificacao{qualificação}\else{conclus\~ao}\fi~do }%
 				\fi%
-				\@nomecurso\ \IfLanguageName{american}{in}{em} \@nomeDoPrograma%
+				\@nomecurso\ \en{in}\br{em} \@nomeDoPrograma%
 			\else%
-                \IfLanguageName{american}{%
+                \en{%
 					submitted in partial fullfilment of\\
                     the requirements to \@nomecurso%
-                }{%
+                }\br{%
                     apresentada como requisito parcial\\
                     para conclus\~ao do \@nomecurso%
                 }%
@@ -660,28 +668,28 @@
 			\@mododeescrita\ %
 			\if@posgraduacao%
 				\if@ppca%
-                \IfLanguageName{american}{%
+                \en{%
 					submitted in partial fullfilment of the requirements to %
 					\if@qualificacao{qualify for}\else{}\fi\\%
-                }{%
+                }\br{%
 					apresentada como requisito parcial para %
 					\if@qualificacao{qualificação}\else{conclus\~ao}\fi~do\\%
                 }%
 				\else%
-                \IfLanguageName{american}{%
+                \en{%
 					submitted in partial fullfilment of\\the requirements to %
 					\if@qualificacao{qualify for}\else{}\fi~%
-                }{%
+                }\br{%
 					apresentada como requisito parcial para\\
 					\if@qualificacao{qualificação}\else{conclus\~ao}\fi~do %
                 }%
 				\fi%
-				\@nomecurso\ \IfLanguageName{american}{in}{em} \@nomeDoPrograma%
+				\@nomecurso\ \en{in}\br{em} \@nomeDoPrograma%
 			\else%
-                \IfLanguageName{american}{%
+                \en{%
 					submitted in partial fullfilment of\\
                     the requirements to \@nomecurso%
-                }{%
+                }\br{%
                     apresentada como requisito parcial\\
                     para conclus\~ao do \@nomecurso%
                 }%
@@ -707,10 +715,10 @@
 				\fi%
 			\fi%
 			\@nomecoordenador\\
-			\@sexocoordenador \ \IfLanguageName{american}{of}{do}\ %
-			\if@posgraduacao \IfLanguageName{american}{Graduate Program in}{Programa de P\'{o}s-gradua\c{c}\~{a}o em} \@nomeDoPrograma\else \@nomecurso\fi%
+			\@sexocoordenador \ \en{of}\br{do}\ %
+			\if@posgraduacao \en{Graduate Program in}\br{Programa de P\'{o}s-gradua\c{c}\~{a}o em} \@nomeDoPrograma\else \@nomecurso\fi%
 			\vfill%
-			{\large \@cidade, \IfLanguageName{american}{\@mes~\@dia, \@ano}{\@dia\ de \@mes\ de \@ano}}
+			{\large \@cidade, \en{\@mes~\@dia, \@ano}\br{\@dia\ de \@mes\ de \@ano}}
 		\end{center}%
 		\defaultspacing%
 	\end{paginatitulo}%
@@ -916,7 +924,7 @@
 	\addtocounter{anexo}{1}%
 	\ifnum\value{anexo}<2%
 		\if@PosTextualNaoIncluso\@conteudoPosTextual\fi%
-		\renewcommand{\appendixname}{\IfLanguageName{american}{Supplement}{Anexo}}%
+		\renewcommand{\appendixname}{\en{Supplement}\br{Anexo}}%
 		\ifnum\value{apendice}<1\appendix\fi%
 		\renewcommand{\thechapter}{\Roman{anexo}}%
 	    \addcontentsline{toc}{chapter}{\appendixname}%
@@ -935,10 +943,10 @@
 		\@IncluirSecao{dedicatoria}%
 		\@IncluirSecao{agradecimentos}%
 	\fi%
-    \IfLanguageName{american}{%
+    \en{%
         \@IncluirSecao{abstract}%
         \selectbiblanguage{american}%
-    }{%
+    }\br{%
         \@IncluirSecao{resumo}%
         \selectlanguage{american}%
         \@IncluirSecao{abstract}%
