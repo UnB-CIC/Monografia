@@ -67,6 +67,10 @@ Caso queira usar o seu próprio sistema, veja cuidadosamente as seções de inst
 Se isso não funcionar, pode tentar gerar um [novo _issue_](https://github.com/UnB-CIC/Monografia/issues/new) no projeto, que **será analisado quando possível**. Providencie informações para a análise/investigação (veja [isso](http://wiki.python.org.br/ComoFazerPerguntasInteligentes) e esses [aqui](http://meta.tex.stackexchange.com/questions/228/ive-just-been-asked-to-write-a-minimal-example-what-is-that) e [ali](http://meta.tex.stackexchange.com/a/3301)).
 
 
+### Os autores são listados incorretamente nas referências! ###
+
+O pacote [babel](https://ctan.org/pkg/babel) não reconhece a conjunção aditiva **e** entre os autores listados no arquivo ```.bib```, é preciso usar a palavra __and__ para que a formatação seja adequada.
+
 ### Queria fazer _XXX_ e não sei como! ###
 
 Este modelo existe para **padronizar** a formatação dos documentos, portanto **evite** modificar a classe ou usar configurações/pacotes diferentes dos definidos. Claro, há _raras_ circunstâncias em que algo um pouco diferente se faz necessário, nesses casos a documentação e sítios especializados são seus principais aliados.
