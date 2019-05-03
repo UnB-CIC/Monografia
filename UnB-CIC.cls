@@ -895,6 +895,9 @@
 	\if@qualificacao\else%
 		\@IncluirSecao{dedicatoria}%
 		\@IncluirSecao{agradecimentos}%
+
+		% *NÃO RETIRAR*, é importante registrar este apoio da CAPES.
+		O presente trabalho foi realizado com apoio da Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brasil (CAPES), por meio do Acesso ao Portal de Periódicos.
 	\fi%
 	\@IncluirSecao{resumo}%
 	\selectlanguage{american}%
