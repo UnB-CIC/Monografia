@@ -6,26 +6,27 @@
 %  - Graduação: bacharelado|engenharia|licenciatura
 %  - Pós-graduação: [qualificacao], mestrado|doutorado, ppca|ppginf
 
-% \documentclass[engenharia]{UnB-CIC}%
-\documentclass[qualificacao,mestrado,ppca]{UnB-CIC}%
+\documentclass[licenciatura]{UnB-CIC}%
+% \documentclass[qualificacao,mestrado,ppca]{UnB-CIC}%
 
 \usepackage{pdfpages}% incluir PDFs, usado no apêndice
 
+\newcommand{\appName}{Nome do App}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Informações do Trabalho
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\orientador{\prof \dr Guilherme Novaes Ramos}{CIC/UnB}%
+\orientador{\prof \dr Jan Mendonça Correa}{CIC/UnB}%
 %\coorientador{\prof \dr José Ralha}{CIC/UnB}
-\coordenador[a]{\prof[a] \dr[a] Ada Lovelace}{Bibliothèque universelle de Genève}%
-\diamesano{24}{dezembro}{2014}%
+\coordenador{\prof \dr João José Costa Gondim}{Bibliothèque universelle de Genève}%
+\diamesano{01}{outubro}{2022}%
 
 \membrobanca{\prof \dr Donald Knuth}{Stanford University}%
 \membrobanca{\dr Leslie Lamport}{Microsoft Research}%
 
-\autor{Guilherme N.}{Ramos}%
+\autor{Kesley Kenny Vasques Guimarães}{\\Pedro Henrique de Brito Agnes}%
 
-\titulo{UnB-CIC: Uma classe em LaTeX para textos do Departamento de Ciência da Computação}%
+\titulo{\appName: Um aplicativo desenvolvido para estudantes de computação}%
 
 \palavraschave{LaTeX, metodologia científica, trabalho de conclusão de curso}%
 \keywords{LaTeX, scientific method, thesis}%
@@ -37,10 +38,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}%
     \capitulo{1_Introducao}{Introdução}%
-    \capitulo{2_UnB-CIC}{A Classe \unbcic}%
-    \capitulo{3_TCC}{Trabalho de Conclusão de Curso}%
-    \capitulo{4_Apresentacao}{Apresentações}%
+    % \capitulo{2_UnB-CIC}{A Classe \unbcic}%
+    % \capitulo{3_TCC}{Trabalho de Conclusão de Curso}%
+    % \capitulo{4_Apresentacao}{Apresentações}%
 
-    \apendice{Apendice_Fichamento}{Fichamento de Artigo Científico}%
-    \anexo{Anexo1}{Documentação Original \unbcic\ (parcial)}%
+    % \apendice{Apendice_Fichamento}{Fichamento de Artigo Científico}%
+    % \anexo{Anexo1}{Documentação Original \unbcic\ (parcial)}%
 \end{document}%
