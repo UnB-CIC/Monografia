@@ -151,7 +151,6 @@
 \@ifundefined{XeTeXversion}{%
 	\PassOptionsToPackage{pdftex}{hyperref}
 
-	\RequirePackage{fixltx2e} %resolve defeitos do LaTeX
 	\RequirePackage{relsize} %utilizada no \@logo
 	\def\@textscale#1#2{\textscale{#1}{#2}}
 }{
