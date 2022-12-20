@@ -1,5 +1,5 @@
 monografia.*
 !monografia.tex
 
-# tocstyle is now obsolete, so should be manually added to repository
+# tocstyle is now obsolete, should be manually added to repository
 tocstyle*
