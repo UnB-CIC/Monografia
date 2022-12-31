@@ -80,17 +80,34 @@ Para o desenvolvimento do projeto de \textit{software}, diversas tecnologias for
 
 \subsection{Android}
 
-TODO\dots
+Android é o sistema operacional para \textit{smartphones} mais utilizado na atualidade, possuindo uma quota de mercado de 71.96\% segundo dados de Novembro de 2022 \cite{mobile-os}. Trata-se de um sistema \textit{open-source} baseado em Linux composto por uma pilha criada para suportar uma vasta quantidade de dispositivos e aspectos dos mesmos \cite{android}. A hierarquia do sistema android pode ser vista da seguinte forma:
+
+\begin{itemize}
+    \item \textbf{Aplicativos do sistema}: Todos os aplicativos que interagem diretamente com o usuário como calculadora, câmera, e-mail, entre outros;
+    \item \textbf{Java API Framework}: Provedores de conteúdo, sistema de views e gerenciadores responsáveis por manter os aplicativos funcionando para o usuário final;
+    \item \textbf{Bibliotecas C/C++ nativas e Runtime do Android}: Bibliotecas e funcionalidades requeridas pelos componentes e serviços do Android como o OpenGL e \textit{Android Core Libraries};
+    \item \textbf{Hardware Abstract Layer (HAL)}: Camada de abstração de \textit{hardware}, é responsável por garantir o correto funcionamento das funcionalidades disponibilizadas pelo Android por meio de qualquer equipamento equipado ao aparelho como câmera, microfone, saída de audio, \textit{bluetooth}, entre outros.
+    \item \textbf{Linux Kernel}: A fundação de todo o sistema Android, fornece funcionalidades de segurança, concorrência, gerenciamento de memória, entre muitos outros recursos de baixo nível para todas as camadas acima. Por ser um produto que já está no mercado a algumas décadas, também facilita para os fabricantes desenvolverem aparelhos para um \textit{Kernel} mais conhecido.
+\end{itemize}
+
+Todo o código do aplicativo \appName\ foi testado no sistema Android, porém, devido a utilização do React Native (\ref{react-section}) no código-fonte, o aplicativo é capaz de executar em dispositivos iOS também. Devido a falta de testes para a plataforma do iOS, não há garantias do correto funcionamento de todas as funcionalidades, ao contrário da versão para sistemas Android.
 
 \subsection{Typescript}
 
-Typescript é uma linguagem de programação fortemente tipada construída em cima do Javascript, permitindo um melhor uso ferramental a qualquer escala \cite{typescript}. Por sua vez, Javascript é uma linguagem leve, interpretada ou compilada \textit{just-in-time} com funções de primeira classe. É uma linguagem multi-paradigma que é usada vastamente em páginas da \textit{Web}, mas também tem ganhado uma popularidade explosiva em sistemas \textit{back-end} e \textit{Mobile} com tecnologias como Node.js e React Native \cite{javascript}.
+Typescript é uma linguagem de programação \textit{open-source} fortemente tipada que foi desenvolvida e é mantida pela Microsoft e é construída em cima da linguagem Javascript, permitindo um melhor uso ferramental a qualquer escala \cite{typescript}. Por sua vez, Javascript é uma linguagem leve, interpretada ou compilada \textit{just-in-time} com funções de primeira classe. É uma linguagem multi-paradigma que é usada vastamente em páginas da \textit{Web}, mas também tem ganhado uma popularidade explosiva em sistemas \textit{back-end} e \textit{Mobile} com tecnologias como Node.js e React Native \cite{javascript}.
 
 A escolha da linguagem se deu por razões pessoais como a familiaridade com a linguagem e devido às opções que o typescript proporciona em relação à tipagem, que têm a capacidade de aumentar a produtividade ao se utilizar editores de texto avançados, assim como diminuir a quantidade de erros em tempo de execução
 
 \subsection{React e React Native}
+\label{react-section}
 
-TODO\dots
+React é uma biblioteca Javascript para realizar a criação de interfaces de usuário. Trata-se de um projeto \textit{open-source} criado e mantido pela empresa Meta. A ideia geral da biblioteca é ser declarativa, baseada em componentes e multi-plataforma, permitindo a criação de um código modularizado mais simples de debugar, e que pode ser convertido para outras plataformas de forma relativamente fácil \cite{react}.
+
+A sintaxe do React utiliza a extensão de sintaxe do Javascript chamada JSX, que se assemelha muito com a sintaxe de linguagens de marcação de texto como HTML e XML, porém traduzindo a sintaxe para códigos Javascript. Por este motivo, a biblioteca pode ser aprendida com uma certa facilidade por desenvolvedores que já estejam familiarizados com o desenvolvimento web nativo usando HTML.
+
+React Native compartilha dos mesmos princípios, funcionalidades e sintaxe do React para o desenvolvimento de aplicativos nativos. Os componentes presentes no código escrito em react native são transformados em elementos de interfaces de usuário utilizando a API da própria plataforma onde será executado. O \textit{framework} facilita o desenvolvimento para plataformas móveis de forma a utilizar o mesmo código tanto no Android como no iOS, não exigindo muito retrabalho ao criar suporte a outras plataformas para o aplicativo. Assim como React, o React Native é uma biblioteca \textit{open-source} mantida pela Meta \cite{react-native}.
+
+A escolha das ferramentas para o projeto \appName foi devido à familiaridade com a mesma por parte da dupla, não exigindo um treinamento extensivo para seu uso no projeto. A aplicação móvel, chamada de \textit{front-office} foi desenvolvida usando React Native, enquanto a versão \textit{Web}, \textit{back-office}, foi desenvolvida utilizando React.
 
 \subsection{Visual Studio Code}
 
