@@ -151,7 +151,6 @@
 \@ifundefined{XeTeXversion}{%
 	\PassOptionsToPackage{pdftex}{hyperref}
 
-	\RequirePackage{fixltx2e} %resolve defeitos do LaTeX
 	\RequirePackage{relsize} %utilizada no \@logo
 	\def\@textscale#1#2{\textscale{#1}{#2}}
 }{
@@ -177,9 +176,6 @@
 
 \usepackage[acronym,nonumberlist]{glossaries}% Após o hyperref!
 \makeglossaries%
-
-\usepackage[tocindentauto]{tocstyle}% Indentação de anexos na TOC
-\usetocstyle{standard}%
 
 %para gerar o label {TotPaginas}
 \RequirePackage{atbegshi}
