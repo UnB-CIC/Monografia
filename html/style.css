@@ -1,0 +1,57 @@
+* {
+    margin: 0
+}
+
+body.dark-mode {
+    background-color: #2B2B2B;
+    color: white;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    background-color: #363E40;
+    height: 50px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+header a {
+    height: 100%;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    line-height: 50px;
+    padding: 0 10px;
+}
+
+main {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+@media screen and (max-width: 960px) {
+    main {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    main {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+h1 {
+    margin: 20px 0
+}
+
+h2 {
+    margin: 15px 0
+}
+
+p {
+    margin: 10px 0;
+}
