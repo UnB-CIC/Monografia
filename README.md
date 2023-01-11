@@ -14,6 +14,8 @@ Esta obra está licenciado com uma Licença [Creative Commons Atribuição-Compa
 
 Assume-se que há uma instalação correta do [TeX Live](https://www.tug.org/texlive/). Para qualquer dos sistemas operacionais mais comuns (Unix/Mac OS/Windows), basta copiar todos os arquivos disponíveis. A forma mais simples de fazer isso é baixar o arquivo [ZIP](https://github.com/UnB-CIC/Monografia/archive/master.zip) e descompactá-lo em sua área de trabalho.
 
+Como opção, uma versão do [modelo está disponível no Overleaf](https://www.overleaf.com/latex/templates/unb-cic/svbrjwmdgndb), mas não há garantia de manutenção/atualização dela.
+
 
 ## Uso ##
 
