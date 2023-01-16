@@ -129,7 +129,7 @@
 	\PassOptionsToPackage{hmargin={3cm,2cm}}{geometry}
     \fi%
     \@defifundef{@fontsize}{12pt}
-% \fi
+\fi
 
 \LoadClass[\@fontsize]{report}
 
