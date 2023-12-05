@@ -62,7 +62,7 @@ A versão disponível aqui apresenta um exemplo completo de texto usando a class
 
 ### Não consigo gerar o texto! ###
 
-Uma solução popular ultimamente tem sido usar uma ferramenta online como o [ShareLaTeX](http://pt.sharelatex.com).
+Uma solução popular ultimamente tem sido usar a ferramenta online [Overleaf](https://www.overleaf.com/latex/templates/unb-cic/svbrjwmdgndb).
 
 Caso queira usar o seu próprio sistema, veja cuidadosamente as seções de instalação e uso acima. Se a sua configuração está conforme e ainda assim não funciona, geralmente há algum tipo de mensagem descrevendo o problema; tente buscar soluções no [Google](https://www.google.com) ou em sítios especializados como o [StackExchange](http://tex.stackexchange.com).
 
